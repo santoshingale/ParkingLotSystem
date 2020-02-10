@@ -40,4 +40,12 @@ public class ParkingLotSystemTest {
         parkingLotSystem.parkCar(new Car("xf","MH05S5455",  new Date() , "red"));
         Assert.assertEquals(parkingLotSystem.status, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_FULL);
     }
+
+    @Test
+    public void whenParkingLotIsFull_shouldChangeAirportSecurityToFull() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        parkingLotSystem.parkCar(new Car("City","MH05S5455",  new Date() , "red"));
+        parkingLotSystem.parkCar(new Car("xf","MH05S5455",  new Date() , "red"));
+        Assert.assertEquals(parkingLotSystem.airportSecurity.securityStatus, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_FULL);
+    }
 }
