@@ -1,5 +1,6 @@
 package parking_lot_system_test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import parking_lot_system.Car;
 import parking_lot_system.ParkingLotSystem;
@@ -11,13 +12,17 @@ public class ParkingLotSystemTest {
     @Test
     public void whenDriverComeToPark_shoulsAbleToPark() {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
-        parkingLotSystem.parkCar(new Car("Elantra","MH05S5455",  new Date() , "red"));
+        Car car1 = new Car("Elantra","MH05S5455",  new Date() , "red");
+        parkingLotSystem.parkCar(car1);
+        Assert.assertTrue(car1.getParkedStatus());
     }
 
     @Test
     public void whenDriverComeToUnpark_shoulsAbleToUnpark() {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
-        int carParkedLot = parkingLotSystem.parkCar(new Car("Elantra", "MH05S5455", new Date(), "red"));
-        parkingLotSystem.unparkCar(1);
+        Car car1 = new Car("Elantra","MH05S5455",  new Date() , "red");
+        parkingLotSystem.parkCar(car1);
+        Assert.assertTrue(car1.getParkedStatus());
+        parkingLotSystem.unparkCar(car1);
     }
 }

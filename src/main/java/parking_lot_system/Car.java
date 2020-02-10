@@ -3,10 +3,25 @@ package parking_lot_system;
 import java.util.Date;
 
 public class Car {
+
+
+    private int lotNo;
     private String carModel;
     private String number;
     private String color;
     private Date parkedDate;
+    private boolean parkedStatus;
+
+
+    public boolean getParkedStatus() {
+        return parkedStatus;
+    }
+
+    public void setParkedStatus(boolean parkedStatus) {
+        this.parkedStatus = parkedStatus;
+    }
+
+
 
     public String getCarModel() {
         return carModel;
@@ -45,6 +60,14 @@ public class Car {
         this.number = number;
         this.color = color;
         this.parkedDate = parkedDate;
+    }
+
+    public int getLotNo() {
+        return lotNo;
+    }
+
+    public void setLotNo(int lotNo) {
+        this.lotNo = lotNo;
     }
 
     @Override

@@ -5,18 +5,31 @@ import java.util.Random;
 
 public class ParkingLotSystem {
 
+    enum ParkingLotStatus{
+        PARKING_LOT_FULL,PARKING_LOT_EMPTY
+    }
+
     public static final int CAPACITY = 2;
-    public int parkingLot;
+    public ParkingLotStatus status = ParkingLotStatus.PARKING_LOT_EMPTY;
 
     HashMap<Integer, Car> parkingLots = new HashMap<>(CAPACITY);
 
-    public int parkCar(Car car) {
+    public void parkCar(Car car) {
+
+        isParkingLotEmpty();
+        if (this.status.equals(ParkingLotStatus.PARKING_LOT_EMPTY)) {
 
             int parkingLot = this.getEmptyParkingLot();
+            car.setLotNo(parkingLot);
             System.out.println(parkingLot);
             parkingLots.put(parkingLot, car);
+            car.setParkedStatus(true);
             System.out.println(parkingLots.values());
-            return parkingLot;
+
+        } else {
+            System.out.println("Parking lot is full");
+        }
+
     }
 
     private int getEmptyParkingLot() {
@@ -29,8 +42,16 @@ public class ParkingLotSystem {
         return lotNumber;
     }
 
-    public void unparkCar(int carParkedLot) {
-        Car remove = parkingLots.remove(carParkedLot);
+    public void unparkCar(Car car1) {
+        Car remove = parkingLots.remove(car1.getLotNo());
         System.out.println(remove);
     }
+
+    private void isParkingLotEmpty() {
+        if (parkingLots.size() != CAPACITY)
+            this.status=ParkingLotStatus.PARKING_LOT_EMPTY;
+        else
+            this.status=ParkingLotStatus.PARKING_LOT_FULL;
+    }
+
 }
