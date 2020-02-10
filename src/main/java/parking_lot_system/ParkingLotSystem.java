@@ -5,30 +5,32 @@ import java.util.Random;
 
 public class ParkingLotSystem {
 
-    public static final int capacity = 3;
+    public static final int CAPACITY = 2;
+    public int parkingLot;
 
-    HashMap<Integer, Car> parkingLots = new HashMap<>(capacity);
+    HashMap<Integer, Car> parkingLots = new HashMap<>(CAPACITY);
 
-    public void parkCar(Car car) {
-        int emptyParkingLot = this.getEmptyParkingLot();
-        System.out.println(emptyParkingLot);
-        if(emptyParkingLot != capacity +1) {
-            parkingLots.put(emptyParkingLot, car);
+    public int parkCar(Car car) {
+
+            int parkingLot = this.getEmptyParkingLot();
+            System.out.println(parkingLot);
+            parkingLots.put(parkingLot, car);
             System.out.println(parkingLots.values());
-        }
+            return parkingLot;
     }
 
     private int getEmptyParkingLot() {
         int lotNumber = 0;
-        if (parkingLots.size() == capacity) {
-            return capacity + 1;
-        }
+
         do {
             Random randomLotNumber = new Random();
-            lotNumber = randomLotNumber.nextInt(3) + 1;
+            lotNumber = randomLotNumber.nextInt(CAPACITY) + 1;
         } while (parkingLots.containsKey(lotNumber));
         return lotNumber;
     }
 
-
+    public void unparkCar(int carParkedLot) {
+        Car remove = parkingLots.remove(carParkedLot);
+        System.out.println(remove);
+    }
 }
