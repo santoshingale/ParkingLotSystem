@@ -25,4 +25,19 @@ public class ParkingLotSystemTest {
         Assert.assertTrue(car1.getParkedStatus());
         parkingLotSystem.unparkCar(car1);
     }
+
+    @Test
+    public void whenParkingLotIsEmpty_shouldIntializeStatusToEmpty() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        parkingLotSystem.parkCar(new Car("City","MH05S5455",  new Date() , "red"));
+        Assert.assertEquals(parkingLotSystem.status, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_EMPTY);
+    }
+
+    @Test
+    public void whenParkingLotIsFull_shouldIntializeStatusToFull() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
+        parkingLotSystem.parkCar(new Car("City","MH05S5455",  new Date() , "red"));
+        parkingLotSystem.parkCar(new Car("xf","MH05S5455",  new Date() , "red"));
+        Assert.assertEquals(parkingLotSystem.status, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_FULL);
+    }
 }

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class ParkingLotSystem {
 
-    enum ParkingLotStatus{
+    public enum ParkingLotStatus{
         PARKING_LOT_FULL,PARKING_LOT_EMPTY
     }
 
@@ -16,15 +16,16 @@ public class ParkingLotSystem {
 
     public void parkCar(Car car) {
 
-        isParkingLotEmpty();
-        if (this.status.equals(ParkingLotStatus.PARKING_LOT_EMPTY)) {
 
+        if (this.status.equals(ParkingLotStatus.PARKING_LOT_EMPTY)) {
+            isParkingLotEmpty();
             int parkingLot = this.getEmptyParkingLot();
             car.setLotNo(parkingLot);
             System.out.println(parkingLot);
             parkingLots.put(parkingLot, car);
             car.setParkedStatus(true);
             System.out.println(parkingLots.values());
+            isParkingLotEmpty();
 
         } else {
             System.out.println("Parking lot is full");
