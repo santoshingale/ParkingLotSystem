@@ -11,5 +11,9 @@ public class ParkingLotSystemTest {
     public void whenDriverComeToPark_shoulsAbleToPark() {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
         parkingLotSystem.parkCar(new Car("Elantra","MH05S5455",  new Date() , "red"));
+        parkingLotSystem.parkCar(new Car("honda","MH05S5455",  new Date() , "red"));
+        parkingLotSystem.parkCar(new Car("City","MH05S5455",  new Date() , "red"));
+        parkingLotSystem.parkCar(new Car("xf","MH05S5455",  new Date() , "red"));
+
     }
 }
