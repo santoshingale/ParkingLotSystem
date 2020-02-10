@@ -21,8 +21,6 @@ public class Car {
         this.parkedStatus = parkedStatus;
     }
 
-
-
     public String getCarModel() {
         return carModel;
     }

@@ -19,19 +19,15 @@ public class ParkingLotSystem {
 
 
         if (this.status.equals(ParkingLotStatus.PARKING_LOT_EMPTY)) {
-            isParkingLotEmpty();
             int parkingLot = this.getEmptyParkingLot();
             car.setLotNo(parkingLot);
-            System.out.println(parkingLot);
             parkingLots.put(parkingLot, car);
             car.setParkedStatus(true);
-            System.out.println(parkingLots.values());
             isParkingLotEmpty();
 
         } else {
             System.out.println("Parking lot is full");
         }
-
     }
 
     private int getEmptyParkingLot() {
@@ -45,17 +41,17 @@ public class ParkingLotSystem {
     }
 
     public void unparkCar(Car car1) {
-        Car remove = parkingLots.remove(car1.getLotNo());
-        System.out.println(remove);
+        Car removed = parkingLots.remove(car1.getLotNo());
+        isParkingLotEmpty();
     }
 
     private void isParkingLotEmpty() {
-        if (parkingLots.size() != CAPACITY)
+        if (parkingLots.size() != CAPACITY) {
             this.status = ParkingLotStatus.PARKING_LOT_EMPTY;
-        else {
+            airportSecurity.securityStatus = this.status;
+        } else {
             this.status = ParkingLotStatus.PARKING_LOT_FULL;
             airportSecurity.securityStatus = this.status;
         }
     }
-
 }
