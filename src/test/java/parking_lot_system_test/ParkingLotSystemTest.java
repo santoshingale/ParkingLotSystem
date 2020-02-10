@@ -2,6 +2,7 @@ package parking_lot_system_test;
 
 import org.junit.Assert;
 import org.junit.Test;
+import parking_lot_system.AirportSecurity;
 import parking_lot_system.Car;
 import parking_lot_system.ParkingLotSystem;
 
@@ -46,7 +47,7 @@ public class ParkingLotSystemTest {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
         parkingLotSystem.parkCar(new Car("City", "MH05S5455", new Date(), "red"));
         parkingLotSystem.parkCar(new Car("xf", "MH05S5455", new Date(), "red"));
-        Assert.assertEquals(parkingLotSystem.airportSecurity.securityStatus, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_FULL);
+        Assert.assertEquals(AirportSecurity.securityStatus, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_FULL);
     }
 
     @Test
@@ -55,8 +56,8 @@ public class ParkingLotSystemTest {
         parkingLotSystem.parkCar(new Car("City", "MH05S5455", new Date(), "red"));
         Car car1 = new Car("Elantra", "MH05S5455", new Date(), "red");
         parkingLotSystem.parkCar(car1);
-        Assert.assertEquals(parkingLotSystem.airportSecurity.securityStatus, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_FULL);
+        Assert.assertEquals(AirportSecurity.securityStatus, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_FULL);
         parkingLotSystem.unparkCar(car1);
-        Assert.assertEquals(parkingLotSystem.airportSecurity.securityStatus, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_EMPTY);
+        Assert.assertEquals(AirportSecurity.securityStatus, ParkingLotSystem.ParkingLotStatus.PARKING_LOT_EMPTY);
     }
 }

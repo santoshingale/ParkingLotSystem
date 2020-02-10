@@ -11,9 +11,8 @@ public class ParkingLotSystem {
 
     public static final int CAPACITY = 2;
     public ParkingLotStatus status = ParkingLotStatus.PARKING_LOT_EMPTY;
-    public AirportSecurity airportSecurity = new AirportSecurity();
 
-    HashMap<Integer, Car> parkingLots = new HashMap<>(CAPACITY);
+    public HashMap<Integer, Car> parkingLots = new HashMap<>(CAPACITY);
 
     public void parkCar(Car car) {
 
@@ -48,10 +47,10 @@ public class ParkingLotSystem {
     private void isParkingLotEmpty() {
         if (parkingLots.size() != CAPACITY) {
             this.status = ParkingLotStatus.PARKING_LOT_EMPTY;
-            airportSecurity.securityStatus = this.status;
+            AirportSecurity.securityStatus = this.status;
         } else {
             this.status = ParkingLotStatus.PARKING_LOT_FULL;
-            airportSecurity.securityStatus = this.status;
+            AirportSecurity.securityStatus = this.status;
         }
     }
 }
