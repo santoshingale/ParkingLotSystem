@@ -2,11 +2,11 @@ package parking_lot_system;
 
 import java.util.Date;
 
-public class Car {
+public class ParkedVehicle {
 
 
     private int lotNo;
-    private String carModel;
+    private String vehicleModel;
     private String number;
     private String color;
     private Date parkedDate;
@@ -21,12 +21,12 @@ public class Car {
         this.parkedStatus = parkedStatus;
     }
 
-    public String getCarModel() {
-        return carModel;
+    public String getVehicleModel() {
+        return vehicleModel;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
+    public void setVehicleModel(String vehicleModel) {
+        this.vehicleModel = vehicleModel;
     }
 
     public String getNumber() {
@@ -53,8 +53,8 @@ public class Car {
         this.parkedDate = parkedDate;
     }
 
-    public Car(String carModel, String number, Date parkedDate, String color) {
-        this.carModel = carModel;
+    public ParkedVehicle(String vehicleModel, String number, Date parkedDate, String color) {
+        this.vehicleModel = vehicleModel;
         this.number = number;
         this.color = color;
         this.parkedDate = parkedDate;
@@ -71,7 +71,7 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-                "carModel='" + carModel + '\'' +
+                "carModel='" + vehicleModel + '\'' +
                 ", number='" + number + '\'' +
                 ", color='" + color + '\'' +
                 ", parkedDate=" + parkedDate +
