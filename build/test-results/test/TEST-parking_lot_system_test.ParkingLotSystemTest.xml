@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="parking_lot_system_test.ParkingLotSystemTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-02-13T10:21:19" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.005">
+<testsuite name="parking_lot_system_test.ParkingLotSystemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-13T12:28:10" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.014">
   <properties/>
-  <testcase name="whenParkingLotIsFull_shouldIntializeStatusToFull" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.002"/>
-  <testcase name="whenParkingLotIsFull_shouldChangeAirportSecurityToFull" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.0"/>
-  <testcase name="whenCarIsUnparked_shouldChangeTheStatusOfParkingLotToEmpty" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.0"/>
-  <testcase name="whenDriverComeToPark_shoulsAbleToPark" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.0"/>
-  <testcase name="whenDriverComeToUnpark_shoulsAbleToUnpark" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.0"/>
-  <testcase name="whenParkingLotIsEmpty_shouldIntializeStatusToEmpty" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="whenParkingOwnerWantToParkAtPerticularLot_shoulsAbleToPark" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.014"/>
+  <system-out><![CDATA[1
+2
+[null, parking_lot_system.ParkedVehicle@70452702]
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

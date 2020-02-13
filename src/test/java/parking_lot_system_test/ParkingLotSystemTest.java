@@ -6,6 +6,7 @@ import org.junit.Test;
 import parking_lot_system.*;
 
 import java.util.Date;
+import java.util.stream.IntStream;
 
 public class ParkingLotSystemTest {
 
@@ -62,5 +63,10 @@ public class ParkingLotSystemTest {
             Assert.assertTrue(ParkingLotOwner.isParkingStatus());
             parkingLotSystem.unparkCar(parkedVehicle1);
             Assert.assertFalse(ParkingLotOwner.isParkingStatus());
+    }
+
+    @Test
+    public void whenParkingOwnerWantToParkAtPerticularLot_shoulsAbleToPark() throws ParkingLotException {
+        Assert.assertTrue(parkingLotSystem.parkCar(parkedVehicle1,2));
     }
 }
