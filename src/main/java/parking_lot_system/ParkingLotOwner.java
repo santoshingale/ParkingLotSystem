@@ -7,4 +7,13 @@ public class ParkingLotOwner {
     public static void setLotIsFull() {
         parkingStatus = true;
     }
+
+    public static void setLotIsEmpty() {
+        parkingStatus = false;
+    }
+
+    public static boolean isParkingStatus() {
+        return parkingStatus;
+    }
+
 }

@@ -4,6 +4,13 @@ import java.util.*;
 
 public class ParkingLotSystem {
 
+    public boolean isVehicleParked(ParkedVehicle parkedVehicle1) {
+        if (parkingLots.containsValue(parkedVehicle1)) {
+            return true;
+        }return false;
+
+    }
+
     public enum ParkingLotStatus {
         PARKING_LOT_FULL, PARKING_LOT_EMPTY
     }
@@ -17,7 +24,7 @@ public class ParkingLotSystem {
 
     }
 
-    public boolean parkCar(ParkedVehicle parkedVehicle) {
+    public boolean parkCar(ParkedVehicle parkedVehicle) throws ParkingLotException {
         if (this.status.equals(ParkingLotStatus.PARKING_LOT_EMPTY)) {
             int parkingLot = this.getEmptyParkingLot();
             parkedVehicle.setLotNo(parkingLot);
@@ -26,9 +33,9 @@ public class ParkingLotSystem {
             isParkingLotEmpty();
             return true;
         } else {
-            System.out.println("Parking lot is full");
+            throw new ParkingLotException("Lot is full" , ParkingLotException.ExceptionType.LOT_FULL);
         }
-        return false;
+
     }
 
     private int getEmptyParkingLot() {
@@ -41,7 +48,7 @@ public class ParkingLotSystem {
         return lotNumber;
     }
 
-    public boolean unparkCar(ParkedVehicle parkedVehicle1) {
+    public boolean unparkCar(ParkedVehicle parkedVehicle1) throws ParkingLotException {
         if (parkingLots.containsValue(parkedVehicle1)) {
             parkingLots.remove(parkedVehicle1.getLotNo());
             isParkingLotEmpty();
@@ -50,14 +57,17 @@ public class ParkingLotSystem {
         return false;
     }
 
-    private void isParkingLotEmpty() {
+    private void isParkingLotEmpty() throws ParkingLotException {
         if (parkingLots.size() != CAPACITY) {
             this.status = ParkingLotStatus.PARKING_LOT_EMPTY;
-            AirportSecurity.setLotIsFull();
+            AirportSecurity.setLotIsEmpty();
+            ParkingLotOwner.setLotIsEmpty();
         } else {
             this.status = ParkingLotStatus.PARKING_LOT_FULL;
             AirportSecurity.setLotIsFull();
             ParkingLotOwner.setLotIsFull();
+
         }
     }
+
 }

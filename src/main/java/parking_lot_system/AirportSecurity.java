@@ -1,9 +1,17 @@
 package parking_lot_system;
 
 public class AirportSecurity {
-    private static boolean parkingSatus;
+    private static boolean parkingStatus;
 
     public static void setLotIsFull() {
-        parkingSatus = true;
+        parkingStatus = true;
+    }
+
+    public static void setLotIsEmpty() {
+        parkingStatus = false;
+    }
+
+    public static boolean isParkingStatus() {
+        return parkingStatus;
     }
 }
