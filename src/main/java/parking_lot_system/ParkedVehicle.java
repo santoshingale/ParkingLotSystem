@@ -1,12 +1,21 @@
 package parking_lot_system;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class ParkedVehicle {
 
 
     private int lotNo;
     private boolean parkedStatus;
+    private LocalDateTime parkedTime;
+
+    public LocalDateTime getParkedTime() {
+        return parkedTime;
+    }
+
+    public void setParkedTime(LocalDateTime parkedTime) {
+        this.parkedTime = parkedTime;
+    }
 
     public int getLotNo() {
         return lotNo;

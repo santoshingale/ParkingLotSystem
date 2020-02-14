@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="parking_lot_system_test.ParkingLotSystemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-14T04:57:23" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.008">
+<testsuite name="parking_lot_system_test.ParkingLotSystemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-14T08:54:05" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.03">
   <properties/>
-  <testcase name="whenCarIsPark_shoulsAbleToFindVehicle" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.008"/>
-  <system-out><![CDATA[[null, parking_lot_system.ParkedVehicle@10c35881]
+  <testcase name="whenCarGettingUnpark_shouldOwnerKnowParkingTime" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.03"/>
+  <system-out><![CDATA[[parking_lot_system.ParkedVehicle@6d3491c1, null]
+parkedDuration2020-02-14T14:24:05.176911
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

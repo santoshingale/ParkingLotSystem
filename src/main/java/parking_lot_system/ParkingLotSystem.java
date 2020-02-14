@@ -1,5 +1,6 @@
 package parking_lot_system;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -18,14 +19,16 @@ public class ParkingLotSystem {
         if (parkingLots.containsValue(parkedVehicle1)) {
             return true;
         }
-        throw new ParkingLotException("Car is not parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);    }
+        throw new ParkingLotException("Car is not parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);
+    }
 
     public boolean parkCar(ParkedVehicle parkedVehicle, int... lotNo) throws ParkingLotException {
         if (this.parkingLots.containsValue(null)) {
             int parkingLot = this.getEmptyParkingLot(lotNo);
             parkedVehicle.setLotNo(parkingLot);
+            parkedVehicle.setParkedTime(LocalDateTime.now());
             parkingLots.put(parkingLot, parkedVehicle);
-            isParkingLotEmpty();
+            isParkingSlotEmpty();
             System.out.println(parkingLots.values());
             return true;
         } else {
@@ -44,21 +47,22 @@ public class ParkingLotSystem {
         return lot.get().getKey();
     }
 
-    public boolean unparkCar(ParkedVehicle parkedVehicle1) throws ParkingLotException {
-        if (isVehicleParked(parkedVehicle1)) {
-            int carParkedLotNumber = findCarParkedLotNumber(parkedVehicle1);
+    public boolean unparkCar(ParkedVehicle parkedVehicle) throws ParkingLotException {
+        if (isVehicleParked(parkedVehicle)) {
+            int carParkedLotNumber = findCarParkedSlotNumber(parkedVehicle);
+            ParkingLotOwner.setParkedDuration(parkedVehicle.getParkedTime());
             parkingLots.put(carParkedLotNumber, null);
-            isParkingLotEmpty();
+            isParkingSlotEmpty();
             return true;
         }
         return false;
     }
 
-    public int findCarParkedLotNumber(ParkedVehicle parkedVehicle1) {
+    public int findCarParkedSlotNumber(ParkedVehicle parkedVehicle1) {
         return parkedVehicle1.getLotNo();
     }
 
-    private void isParkingLotEmpty() throws ParkingLotException {
+    private void isParkingSlotEmpty() throws ParkingLotException {
         if (parkingLots.containsValue(null)) {
             AirportSecurity.setLotIsEmpty();
             ParkingLotOwner.setLotIsEmpty();

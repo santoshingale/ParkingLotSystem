@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import parking_lot_system.*;
-
-import java.util.Date;
-import java.util.stream.IntStream;
+import java.time.LocalDateTime;
 
 public class ParkingLotSystemTest {
 
@@ -21,7 +19,6 @@ public class ParkingLotSystemTest {
 
     @Test
     public void whenDriverComeToPark_shoulsAbleToPark() throws ParkingLotException {
-        parkingLotSystem.parkCar(parkedVehicle1);
         Assert.assertTrue(parkingLotSystem.parkCar(parkedVehicle1));
     }
 
@@ -70,15 +67,22 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void whenGivenPerticularLotNo_shoulsAbleToPark() throws ParkingLotException {
+    public void whenGivenPerticularLotNo_shouldAbleToPark() throws ParkingLotException {
         Assert.assertTrue(parkingLotSystem.parkCar(parkedVehicle1, 2));
     }
 
     @Test
-    public void whenCarIsPark_shoulsAbleToFindVehicle() throws ParkingLotException {
+    public void whenCarIsPark_shouldAbleToFindVehicle() throws ParkingLotException {
         parkingLotSystem.parkCar(parkedVehicle1, 2);
-        int carParkedLotNumber = parkingLotSystem.findCarParkedLotNumber(parkedVehicle1);
-        Assert.assertEquals(2,carParkedLotNumber);
+        int carParkedLotNumber = parkingLotSystem.findCarParkedSlotNumber(parkedVehicle1);
+        Assert.assertEquals(2, carParkedLotNumber);
     }
 
+    @Test
+    public void whenCarGettingUnpark_shouldOwnerKnowParkingTime() throws ParkingLotException {
+        parkingLotSystem.parkCar(parkedVehicle1);
+        int minute = LocalDateTime.now().getMinute();
+        parkingLotSystem.unparkCar(parkedVehicle1);
+        Assert.assertEquals(minute, ParkingLotOwner.getParkedDuration().getMinute());
+    }
 }
