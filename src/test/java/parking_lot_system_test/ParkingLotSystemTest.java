@@ -14,7 +14,7 @@ public class ParkingLotSystemTest {
     @Before
     public void setUp() throws Exception {
         parkedVehicle1 = new ParkedVehicle();
-        parkingLotSystem = new ParkingLotSystem();
+        parkingLotSystem = new ParkingLotSystem(2);
     }
 
     @Test
@@ -36,14 +36,12 @@ public class ParkingLotSystemTest {
 
     @Test
     public void whenParkingLotIsEmpty_shouldIntializeStatusToEmpty() throws ParkingLotException {
-        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
         parkingLotSystem.parkCar(new ParkedVehicle());
         Assert.assertFalse(ParkingLotOwner.isParkingStatus());
     }
 
     @Test
     public void whenParkingLotIsFull_shouldIntializeStatusToFull() throws ParkingLotException {
-        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());
         Assert.assertTrue(ParkingLotOwner.isParkingStatus());
@@ -51,7 +49,6 @@ public class ParkingLotSystemTest {
 
     @Test
     public void whenParkingLotIsFull_shouldChangeAirportSecurityToFull() throws ParkingLotException {
-        ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());
         Assert.assertTrue(AirportSecurity.isParkingStatus());

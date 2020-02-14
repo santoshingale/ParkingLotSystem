@@ -6,14 +6,16 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public static final int CAPACITY = 2;
+    public final int CAPACITY ;
 
     public Map<Integer, ParkedVehicle> parkingLots = new TreeMap<Integer, ParkedVehicle>();
 
-    public ParkingLotSystem() {
+    public ParkingLotSystem(int capacity) {
+        CAPACITY = capacity;
         IntStream.range(1, CAPACITY + 1)
                 .forEach(i -> parkingLots.put(i, null));
     }
+
 
     public boolean isVehicleParked(ParkedVehicle parkedVehicle1) {
         if (parkingLots.containsValue(parkedVehicle1)) {

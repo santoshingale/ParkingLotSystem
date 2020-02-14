@@ -1,2 +1,16 @@
-2[parking_lot_system.ParkedVehicle@6d3491c1, null]
-)parkedDuration2020-02-14T14:24:05.176911
+2[parking_lot_system.ParkedVehicle@4201b5a5, null]
+W[parking_lot_system.ParkedVehicle@4201b5a5, parking_lot_system.ParkedVehicle@1b91d3d8]
+2[parking_lot_system.ParkedVehicle@7e41d646, null]
+)parkedDuration2020-02-14T15:12:29.442496
+2[parking_lot_system.ParkedVehicle@3eff0932, null]
+W[parking_lot_system.ParkedVehicle@3eff0932, parking_lot_system.ParkedVehicle@28c8fe27]
+2[null, parking_lot_system.ParkedVehicle@1d19e83f]
+2[parking_lot_system.ParkedVehicle@6d1aee3c, null]
+W[parking_lot_system.ParkedVehicle@6d1aee3c, parking_lot_system.ParkedVehicle@2b6acc34]
+)parkedDuration2020-02-14T15:12:29.451802
+2[parking_lot_system.ParkedVehicle@44bc26b8, null]
+2[null, parking_lot_system.ParkedVehicle@16b66600]
+	2[parking_lot_system.ParkedVehicle@2c6701e4, null]
+	)parkedDuration2020-02-14T15:12:29.458661
+
+2[parking_lot_system.ParkedVehicle@519ee8ad, null]

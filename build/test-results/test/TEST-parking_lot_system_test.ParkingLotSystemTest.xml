@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="parking_lot_system_test.ParkingLotSystemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-14T08:54:05" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.03">
+<testsuite name="parking_lot_system_test.ParkingLotSystemTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2020-02-14T09:42:29" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.064">
   <properties/>
-  <testcase name="whenCarGettingUnpark_shouldOwnerKnowParkingTime" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.03"/>
-  <system-out><![CDATA[[parking_lot_system.ParkedVehicle@6d3491c1, null]
-parkedDuration2020-02-14T14:24:05.176911
+  <testcase name="whenParkingLotIsFull_shouldIntializeStatusToFull" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.039"/>
+  <testcase name="whenCarGettingUnpark_shouldOwnerKnowParkingTime" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.002"/>
+  <testcase name="whenParkingLotIsFull_shouldChangeAirportSecurityToFull" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.002"/>
+  <testcase name="whenGivenPerticularLotNo_shouldAbleToPark" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.002"/>
+  <testcase name="whenCarIsUnparked_shouldChangeTheStatusOfParkingLotToEmpty" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.003"/>
+  <testcase name="whenDriverComeToPark_shoulsAbleToPark" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.001"/>
+  <testcase name="whenCarIsPark_shouldAbleToFindVehicle" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.003"/>
+  <testcase name="whenDriverComeToUnpark_shoulsAbleToUnpark" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.003"/>
+  <testcase name="whenParkingLotIsEmpty_shouldIntializeStatusToEmpty" classname="parking_lot_system_test.ParkingLotSystemTest" time="0.005"/>
+  <system-out><![CDATA[[parking_lot_system.ParkedVehicle@4201b5a5, null]
+[parking_lot_system.ParkedVehicle@4201b5a5, parking_lot_system.ParkedVehicle@1b91d3d8]
+[parking_lot_system.ParkedVehicle@7e41d646, null]
+parkedDuration2020-02-14T15:12:29.442496
+[parking_lot_system.ParkedVehicle@3eff0932, null]
+[parking_lot_system.ParkedVehicle@3eff0932, parking_lot_system.ParkedVehicle@28c8fe27]
+[null, parking_lot_system.ParkedVehicle@1d19e83f]
+[parking_lot_system.ParkedVehicle@6d1aee3c, null]
+[parking_lot_system.ParkedVehicle@6d1aee3c, parking_lot_system.ParkedVehicle@2b6acc34]
+parkedDuration2020-02-14T15:12:29.451802
+[parking_lot_system.ParkedVehicle@44bc26b8, null]
+[null, parking_lot_system.ParkedVehicle@16b66600]
+[parking_lot_system.ParkedVehicle@2c6701e4, null]
+parkedDuration2020-02-14T15:12:29.458661
+[parking_lot_system.ParkedVehicle@519ee8ad, null]
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
