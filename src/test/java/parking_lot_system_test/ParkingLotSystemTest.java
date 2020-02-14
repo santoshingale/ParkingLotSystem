@@ -30,7 +30,11 @@ public class ParkingLotSystemTest {
         parkingLotSystem.parkCar(parkedVehicle1);
         Assert.assertTrue(parkingLotSystem.isVehicleParked(parkedVehicle1));
         parkingLotSystem.unparkCar(parkedVehicle1);
-        Assert.assertFalse(parkingLotSystem.isVehicleParked(parkedVehicle1));
+        try {
+            parkingLotSystem.isVehicleParked(parkedVehicle1);
+        } catch (ParkingLotException p) {
+            Assert.assertEquals("Car is not parked", p.getMessage());
+        }
     }
 
     @Test
@@ -58,15 +62,23 @@ public class ParkingLotSystemTest {
 
     @Test
     public void whenCarIsUnparked_shouldChangeTheStatusOfParkingLotToEmpty() {
-            parkingLotSystem.parkCar(new ParkedVehicle());
-            parkingLotSystem.parkCar(parkedVehicle1);
-            Assert.assertTrue(ParkingLotOwner.isParkingStatus());
-            parkingLotSystem.unparkCar(parkedVehicle1);
-            Assert.assertFalse(ParkingLotOwner.isParkingStatus());
+        parkingLotSystem.parkCar(new ParkedVehicle());
+        parkingLotSystem.parkCar(parkedVehicle1);
+        Assert.assertTrue(ParkingLotOwner.isParkingStatus());
+        parkingLotSystem.unparkCar(parkedVehicle1);
+        Assert.assertFalse(ParkingLotOwner.isParkingStatus());
     }
 
     @Test
-    public void whenParkingOwnerWantToParkAtPerticularLot_shoulsAbleToPark() throws ParkingLotException {
-        Assert.assertTrue(parkingLotSystem.parkCar(parkedVehicle1,2));
+    public void whenGivenPerticularLotNo_shoulsAbleToPark() throws ParkingLotException {
+        Assert.assertTrue(parkingLotSystem.parkCar(parkedVehicle1, 2));
     }
+
+    @Test
+    public void whenCarIsPark_shoulsAbleToFindVehicle() throws ParkingLotException {
+        parkingLotSystem.parkCar(parkedVehicle1, 2);
+        int carParkedLotNumber = parkingLotSystem.findCarParkedLotNumber(parkedVehicle1);
+        Assert.assertEquals(2,carParkedLotNumber);
+    }
+
 }

@@ -18,43 +18,44 @@ public class ParkingLotSystem {
         if (parkingLots.containsValue(parkedVehicle1)) {
             return true;
         }
-        return false;
-    }
+        throw new ParkingLotException("Car is not parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);    }
 
     public boolean parkCar(ParkedVehicle parkedVehicle, int... lotNo) throws ParkingLotException {
-        if (this.parkingLots.containsValue(null)){
+        if (this.parkingLots.containsValue(null)) {
             int parkingLot = this.getEmptyParkingLot(lotNo);
             parkedVehicle.setLotNo(parkingLot);
             parkingLots.put(parkingLot, parkedVehicle);
             isParkingLotEmpty();
             System.out.println(parkingLots.values());
             return true;
-        } else{
+        } else {
             throw new ParkingLotException("Lot is full", ParkingLotException.ExceptionType.LOT_FULL);
         }
     }
 
     private int getEmptyParkingLot(int[] i) {
-        System.out.println(i.length);
         if (i.length != 0 && parkingLots.get(i[0]) == null) {
-            System.out.println(i[0]);
             return i[0];
         }
         Optional<Map.Entry<Integer, ParkedVehicle>> lot = parkingLots.entrySet()
                 .stream()
                 .filter(emptyLot -> emptyLot.getValue() == null)
                 .findFirst();
-        System.out.println("hiii");
         return lot.get().getKey();
     }
 
     public boolean unparkCar(ParkedVehicle parkedVehicle1) throws ParkingLotException {
-        if (parkingLots.containsValue(parkedVehicle1)) {
-            parkingLots.put(parkedVehicle1.getLotNo(), null);
+        if (isVehicleParked(parkedVehicle1)) {
+            int carParkedLotNumber = findCarParkedLotNumber(parkedVehicle1);
+            parkingLots.put(carParkedLotNumber, null);
             isParkingLotEmpty();
             return true;
         }
         return false;
+    }
+
+    public int findCarParkedLotNumber(ParkedVehicle parkedVehicle1) {
+        return parkedVehicle1.getLotNo();
     }
 
     private void isParkingLotEmpty() throws ParkingLotException {

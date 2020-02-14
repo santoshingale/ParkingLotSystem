@@ -2,10 +2,10 @@ package parking_lot_system;
 
 public class ParkingLotException extends RuntimeException{
 
-    ExceptionType type;
+    public static ExceptionType type;
 
     enum ExceptionType {
-        LOT_FULL;
+        LOT_FULL, VEHICLE_NOT_PARKED;
     }
 
     public ParkingLotException(String message, ExceptionType type) {
