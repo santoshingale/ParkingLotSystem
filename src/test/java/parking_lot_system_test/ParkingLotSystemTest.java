@@ -85,7 +85,7 @@ public class ParkingLotSystemTest {
 
     @Test
     public void whenCarGettingUnpark_shouldOwnerKnowParkingTim() throws ParkingLotException {
-        ParkingLotSystem parkingLotSystem = new ParkingLotSystem(20,4);
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem(100,1);
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());

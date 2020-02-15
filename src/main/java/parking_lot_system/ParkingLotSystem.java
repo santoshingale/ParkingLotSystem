@@ -6,10 +6,14 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public final int CAPACITY;
-    public final int NUMBER_OF_LOTS;
-    public final int ROW_CAPACITY;
+    public int CAPACITY;
+    public int NUMBER_OF_LOTS;
+    public int ROW_CAPACITY;
     public Map<Integer, ParkedVehicle> parkingLots = new TreeMap<Integer, ParkedVehicle>();
+    public Map<Integer, Integer> rangeMap = new TreeMap<>();
+
+    int nullCount = 0;
+    int rangeKey = 1;
 
     public ParkingLotSystem(int capacity, int numberoflots) {
         CAPACITY = capacity;
@@ -18,7 +22,6 @@ public class ParkingLotSystem {
         IntStream.range(1, CAPACITY + 1)
                 .forEach(i -> parkingLots.put(i, null));
     }
-
 
     public boolean isVehicleParked(ParkedVehicle parkedVehicle1) {
         if (parkingLots.containsValue(parkedVehicle1)) {
@@ -46,6 +49,7 @@ public class ParkingLotSystem {
             return i[0];
         }
         int parkingLotRow = findParkingLotRow();
+        System.out.println(parkingLotRow);
         Optional<Map.Entry<Integer, ParkedVehicle>> lot = parkingLots.entrySet()
                 .stream()
                 .filter(integerParkedVehicleEntry -> {
@@ -56,7 +60,7 @@ public class ParkingLotSystem {
                 })
                 .filter(emptyLot -> emptyLot.getValue() == null)
                 .findFirst();
-        return lot.get().getKey();
+         return lot.get().getKey();
     }
 
     public boolean unparkCar(ParkedVehicle parkedVehicle) throws ParkingLotException {
@@ -71,29 +75,28 @@ public class ParkingLotSystem {
     }
 
     public int findParkingLotRow() {
+        this.rangeKey = 0;
+        long count = parkingLots.entrySet()
+                .stream()
+                .filter(data -> data.getValue() == null)
+                .map(this::nullCounter).count();
 
-        Map<Integer, Long> rangeMap = new HashMap<>();
-        int second = LocalDateTime.now().getNano()/1000000;
-        for (int i = 0; i < NUMBER_OF_LOTS; i++) {
-            int range = (i * ROW_CAPACITY + 1);
-            rangeMap.put(i + 1, parkingLots.entrySet().stream().filter(val -> {
-                System.out.println(val.getKey());
-                if (range <= val.getKey() && val.getKey() < (range + ROW_CAPACITY) && val.getValue() == null) {
-                    return true;
-                }
-                return false;
-            }).count());
-        }
-        int second1 = LocalDateTime.now().getNano()/1000000;
-        System.out.println("excecution time-->"+(second1-second));
-        Set<Map.Entry<Integer, ParkedVehicle>> entries = parkingLots.entrySet();
-
-        Integer key = rangeMap.entrySet().stream().max(Comparator.comparing(integerLongEntry -> integerLongEntry.getValue())).get().getKey();
-       // System.out.println(rangeMap.values());
-        System.out.println(key);
+        Integer key = this.rangeMap.entrySet()
+                .stream()
+                .max(Comparator.comparing(integerLongEntry -> integerLongEntry.getValue()))
+                .get()
+                .getKey();
         return key;
     }
 
+    public int nullCounter(Map.Entry<Integer, ParkedVehicle> entry) {
+        if ((entry.getKey()) % ROW_CAPACITY == 0) {
+            this.rangeMap.put(rangeKey+=1, nullCount);
+            nullCount = 0;
+        }
+        nullCount++;
+        return 0;
+    }
 
     public int findCarParkedSlotNumber(ParkedVehicle parkedVehicle1) {
         return parkedVehicle1.getLotNo();
