@@ -6,12 +6,15 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public final int CAPACITY ;
-
+    public final int CAPACITY;
+    public final int NUMBER_OF_LOTS;
+    public final int ROW_CAPACITY;
     public Map<Integer, ParkedVehicle> parkingLots = new TreeMap<Integer, ParkedVehicle>();
 
-    public ParkingLotSystem(int capacity) {
+    public ParkingLotSystem(int capacity, int numberoflots) {
         CAPACITY = capacity;
+        NUMBER_OF_LOTS = numberoflots;
+        ROW_CAPACITY = CAPACITY / NUMBER_OF_LOTS;
         IntStream.range(1, CAPACITY + 1)
                 .forEach(i -> parkingLots.put(i, null));
     }
@@ -42,8 +45,15 @@ public class ParkingLotSystem {
         if (i.length != 0 && parkingLots.get(i[0]) == null) {
             return i[0];
         }
+        int parkingLotRow = findParkingLotRow();
         Optional<Map.Entry<Integer, ParkedVehicle>> lot = parkingLots.entrySet()
                 .stream()
+                .filter(integerParkedVehicleEntry -> {
+                    if (integerParkedVehicleEntry.getKey() > (parkingLotRow * ROW_CAPACITY - ROW_CAPACITY) && integerParkedVehicleEntry.getKey() <= (parkingLotRow * ROW_CAPACITY)) {
+                        return true;
+                    }
+                    return false;
+                })
                 .filter(emptyLot -> emptyLot.getValue() == null)
                 .findFirst();
         return lot.get().getKey();
@@ -59,6 +69,31 @@ public class ParkingLotSystem {
         }
         return false;
     }
+
+    public int findParkingLotRow() {
+
+        Map<Integer, Long> rangeMap = new HashMap<>();
+        int second = LocalDateTime.now().getNano()/1000000;
+        for (int i = 0; i < NUMBER_OF_LOTS; i++) {
+            int range = (i * ROW_CAPACITY + 1);
+            rangeMap.put(i + 1, parkingLots.entrySet().stream().filter(val -> {
+                System.out.println(val.getKey());
+                if (range <= val.getKey() && val.getKey() < (range + ROW_CAPACITY) && val.getValue() == null) {
+                    return true;
+                }
+                return false;
+            }).count());
+        }
+        int second1 = LocalDateTime.now().getNano()/1000000;
+        System.out.println("excecution time-->"+(second1-second));
+        Set<Map.Entry<Integer, ParkedVehicle>> entries = parkingLots.entrySet();
+
+        Integer key = rangeMap.entrySet().stream().max(Comparator.comparing(integerLongEntry -> integerLongEntry.getValue())).get().getKey();
+       // System.out.println(rangeMap.values());
+        System.out.println(key);
+        return key;
+    }
+
 
     public int findCarParkedSlotNumber(ParkedVehicle parkedVehicle1) {
         return parkedVehicle1.getLotNo();

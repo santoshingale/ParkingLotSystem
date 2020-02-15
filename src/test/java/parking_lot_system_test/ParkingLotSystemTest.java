@@ -14,7 +14,7 @@ public class ParkingLotSystemTest {
     @Before
     public void setUp() throws Exception {
         parkedVehicle1 = new ParkedVehicle();
-        parkingLotSystem = new ParkingLotSystem(2);
+        parkingLotSystem = new ParkingLotSystem(2, 1);
     }
 
     @Test
@@ -81,5 +81,16 @@ public class ParkingLotSystemTest {
         int minute = LocalDateTime.now().getMinute();
         parkingLotSystem.unparkCar(parkedVehicle1);
         Assert.assertEquals(minute, ParkingLotOwner.getParkedDuration().getMinute());
+    }
+
+    @Test
+    public void whenCarGettingUnpark_shouldOwnerKnowParkingTim() throws ParkingLotException {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem(20,4);
+        parkingLotSystem.parkCar(new ParkedVehicle());
+        parkingLotSystem.parkCar(new ParkedVehicle());
+        parkingLotSystem.parkCar(new ParkedVehicle());
+        parkingLotSystem.parkCar(new ParkedVehicle());
+        parkingLotSystem.parkCar(new ParkedVehicle());
+        parkingLotSystem.parkCar(new ParkedVehicle());
     }
 }
