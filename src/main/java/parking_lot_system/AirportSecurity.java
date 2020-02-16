@@ -1,14 +1,10 @@
 package parking_lot_system;
 
-public class AirportSecurity {
+public class AirportSecurity implements ParkingLotObserver {
     private static boolean parkingStatus;
 
-    public static void setLotIsFull() {
-        parkingStatus = true;
-    }
-
-    public static void setLotIsEmpty() {
-        parkingStatus = false;
+    public void updateStatus(boolean status) {
+        parkingStatus = status;
     }
 
     public static boolean isParkingStatus() {

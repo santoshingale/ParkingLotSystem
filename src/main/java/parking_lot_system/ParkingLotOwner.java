@@ -2,17 +2,12 @@ package parking_lot_system;
 
 import java.time.LocalDateTime;
 
-public class ParkingLotOwner {
+public class ParkingLotOwner implements ParkingLotObserver {
     private static boolean parkingStatus;
     private static LocalDateTime parkedDuration;
 
-
-    public static void setLotIsFull() {
-        parkingStatus = true;
-    }
-
-    public static void setLotIsEmpty() {
-        parkingStatus = false;
+    public void updateStatus(boolean status) {
+        parkingStatus = status;
     }
 
     public static LocalDateTime getParkedDuration() {
@@ -27,6 +22,4 @@ public class ParkingLotOwner {
         parkedDuration = parkedTime;
         System.out.println("parkedDuration" + parkedDuration);
     }
-
-
 }

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.060s</div>
+<div class="counter">0.077s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">whenCarGettingUnpark_shouldOwnerKnowParkingTim</td>
-<td class="success">0.020s</td>
+<td class="success">0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -89,12 +89,12 @@
 </tr>
 <tr>
 <td class="success">whenCarIsPark_shouldAbleToFindVehicle</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">whenCarIsUnparked_shouldChangeTheStatusOfParkingLotToEmpty</td>
-<td class="success">0.001s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -104,7 +104,7 @@
 </tr>
 <tr>
 <td class="success">whenDriverComeToUnpark_shoulsAbleToUnpark</td>
-<td class="success">0.001s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -114,17 +114,17 @@
 </tr>
 <tr>
 <td class="success">whenParkingLotIsEmpty_shouldIntializeStatusToEmpty</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">whenParkingLotIsFull_shouldChangeAirportSecurityToFull</td>
-<td class="success">0.007s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">whenParkingLotIsFull_shouldIntializeStatusToFull</td>
-<td class="success">0.028s</td>
+<td class="success">0.056s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -132,43 +132,65 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>1
-[parking_lot_system.ParkedVehicle@1c611fb9, null]
+<pre>parking_lot_system.ParkingLotOwner@48aa6740
+parking_lot_system.AirportSecurity@c9abb70
 1
-[parking_lot_system.ParkedVehicle@1c611fb9, parking_lot_system.ParkedVehicle@3de7c397]
+[parking_lot_system.ParkedVehicle@76625f32, null]
 1
-[parking_lot_system.ParkedVehicle@5e91becc, null]
-parkedDuration2020-02-15T14:21:05.576490
+[parking_lot_system.ParkedVehicle@76625f32, parking_lot_system.ParkedVehicle@169e2020]
+parking_lot_system.ParkingLotOwner@74dc2982
+parking_lot_system.AirportSecurity@122c3e6b
 1
-[parking_lot_system.ParkedVehicle@22ae7ce8, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+[parking_lot_system.ParkedVehicle@3ba9ce80, null]
+parkedDuration2020-02-16T18:56:51.167959
+parking_lot_system.ParkingLotOwner@c1deeb7
+parking_lot_system.AirportSecurity@1918468f
+parking_lot_system.ParkingLotOwner@6ab4eca1
+parking_lot_system.AirportSecurity@1f1ce2b9
 1
-[parking_lot_system.ParkedVehicle@22ae7ce8, parking_lot_system.ParkedVehicle@60b3386d, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+[parking_lot_system.ParkedVehicle@7c97cfbb, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 1
-[parking_lot_system.ParkedVehicle@22ae7ce8, parking_lot_system.ParkedVehicle@60b3386d, parking_lot_system.ParkedVehicle@74623cbb, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+[parking_lot_system.ParkedVehicle@7c97cfbb, parking_lot_system.ParkedVehicle@27e0d298, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 1
-[parking_lot_system.ParkedVehicle@22ae7ce8, parking_lot_system.ParkedVehicle@60b3386d, parking_lot_system.ParkedVehicle@74623cbb, parking_lot_system.ParkedVehicle@27569b25, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+[parking_lot_system.ParkedVehicle@7c97cfbb, parking_lot_system.ParkedVehicle@27e0d298, parking_lot_system.ParkedVehicle@6a7ce321, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 1
-[parking_lot_system.ParkedVehicle@22ae7ce8, parking_lot_system.ParkedVehicle@60b3386d, parking_lot_system.ParkedVehicle@74623cbb, parking_lot_system.ParkedVehicle@27569b25, parking_lot_system.ParkedVehicle@764efa1b, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+[parking_lot_system.ParkedVehicle@7c97cfbb, parking_lot_system.ParkedVehicle@27e0d298, parking_lot_system.ParkedVehicle@6a7ce321, parking_lot_system.ParkedVehicle@120dcdfd, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 1
-[parking_lot_system.ParkedVehicle@22ae7ce8, parking_lot_system.ParkedVehicle@60b3386d, parking_lot_system.ParkedVehicle@74623cbb, parking_lot_system.ParkedVehicle@27569b25, parking_lot_system.ParkedVehicle@764efa1b, parking_lot_system.ParkedVehicle@fc7c4ef, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+[parking_lot_system.ParkedVehicle@7c97cfbb, parking_lot_system.ParkedVehicle@27e0d298, parking_lot_system.ParkedVehicle@6a7ce321, parking_lot_system.ParkedVehicle@120dcdfd, parking_lot_system.ParkedVehicle@50253210, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 1
-[parking_lot_system.ParkedVehicle@6aa5a648, null]
+[parking_lot_system.ParkedVehicle@7c97cfbb, parking_lot_system.ParkedVehicle@27e0d298, parking_lot_system.ParkedVehicle@6a7ce321, parking_lot_system.ParkedVehicle@120dcdfd, parking_lot_system.ParkedVehicle@50253210, parking_lot_system.ParkedVehicle@71704e9e, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+parking_lot_system.ParkingLotOwner@7c98de7a
+parking_lot_system.AirportSecurity@869631
 1
-[parking_lot_system.ParkedVehicle@6aa5a648, parking_lot_system.ParkedVehicle@7939878a]
-[null, parking_lot_system.ParkedVehicle@78262494]
+[parking_lot_system.ParkedVehicle@79ca9183, null]
 1
-[parking_lot_system.ParkedVehicle@49f777c3, null]
+[parking_lot_system.ParkedVehicle@79ca9183, parking_lot_system.ParkedVehicle@abd349a]
+parking_lot_system.ParkingLotOwner@306c40b9
+parking_lot_system.AirportSecurity@46f6f9b
+[null, parking_lot_system.ParkedVehicle@2984a01c]
+parking_lot_system.ParkingLotOwner@4afe4852
+parking_lot_system.AirportSecurity@18c5b03c
 1
-[parking_lot_system.ParkedVehicle@49f777c3, parking_lot_system.ParkedVehicle@ea70f53]
-parkedDuration2020-02-15T14:21:05.606549
+[parking_lot_system.ParkedVehicle@67a90708, null]
 1
-[parking_lot_system.ParkedVehicle@3b97ccda, null]
-[null, parking_lot_system.ParkedVehicle@72dc5db8]
+[parking_lot_system.ParkedVehicle@67a90708, parking_lot_system.ParkedVehicle@6ba1dfa1]
+parkedDuration2020-02-16T18:56:51.185752
+parking_lot_system.ParkingLotOwner@5325b65f
+parking_lot_system.AirportSecurity@66d4a857
 1
-[parking_lot_system.ParkedVehicle@67654f, null]
-parkedDuration2020-02-15T14:21:05.608690
+[parking_lot_system.ParkedVehicle@49ea62c2, null]
+parking_lot_system.ParkingLotOwner@2cd3e089
+parking_lot_system.AirportSecurity@523a3c02
+[null, parking_lot_system.ParkedVehicle@11efb002]
+parking_lot_system.ParkingLotOwner@b093c8f
+parking_lot_system.AirportSecurity@386d42cf
 1
-[parking_lot_system.ParkedVehicle@23d96eda, null]
+[parking_lot_system.ParkedVehicle@3b34a3ec, null]
+parkedDuration2020-02-16T18:56:51.190664
+parking_lot_system.ParkingLotOwner@47318b43
+parking_lot_system.AirportSecurity@59847b8a
+1
+[parking_lot_system.ParkedVehicle@350635b9, null]
 </pre>
 </span>
 </div>
@@ -180,7 +202,7 @@ parkedDuration2020-02-15T14:21:05.608690
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.2.1</a> at 15-Feb-2020, 2:21:05 PM</p>
+<a href="http://www.gradle.org">Gradle 5.2.1</a> at 16-Feb-2020, 6:56:51 PM</p>
 </div>
 </div>
 </body>

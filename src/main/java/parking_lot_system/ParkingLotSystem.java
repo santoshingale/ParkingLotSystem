@@ -9,11 +9,16 @@ public class ParkingLotSystem {
     public int CAPACITY;
     public int NUMBER_OF_LOTS;
     public int ROW_CAPACITY;
-    public Map<Integer, ParkedVehicle> parkingLots = new TreeMap<Integer, ParkedVehicle>();
-    public Map<Integer, Integer> rangeMap = new TreeMap<>();
 
-    int nullCount = 0;
-    int rangeKey = 1;
+    public Map<Integer, ParkedVehicle> parkingLots = new TreeMap<Integer, ParkedVehicle>();
+    public Map<Integer, Integer> parkingLotsCapacity = new TreeMap<>();
+    ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
+    AirportSecurity airportSecurity = new AirportSecurity();
+    ObserversHandler observersHandler = new ObserversHandler();
+
+    public boolean parkingStatus;
+    int emptySpotCounter = 0;
+    int lotNumber = 0;
 
     public ParkingLotSystem(int capacity, int numberoflots) {
         CAPACITY = capacity;
@@ -21,6 +26,9 @@ public class ParkingLotSystem {
         ROW_CAPACITY = CAPACITY / NUMBER_OF_LOTS;
         IntStream.range(1, CAPACITY + 1)
                 .forEach(i -> parkingLots.put(i, null));
+        observersHandler.registerObserver(parkingLotOwner);
+        observersHandler.registerObserver(airportSecurity);
+
     }
 
     public boolean isVehicleParked(ParkedVehicle parkedVehicle1) {
@@ -60,7 +68,9 @@ public class ParkingLotSystem {
                 })
                 .filter(emptyLot -> emptyLot.getValue() == null)
                 .findFirst();
-         return lot.get().getKey();
+
+
+        return lot.get().getKey();
     }
 
     public boolean unparkCar(ParkedVehicle parkedVehicle) throws ParkingLotException {
@@ -75,26 +85,25 @@ public class ParkingLotSystem {
     }
 
     public int findParkingLotRow() {
-        this.rangeKey = 0;
-        long count = parkingLots.entrySet()
+        this.lotNumber = 0;
+        parkingLots.entrySet()
                 .stream()
                 .filter(data -> data.getValue() == null)
-                .map(this::nullCounter).count();
+                .map(this::findLotsEmptySpot).count();
 
-        Integer key = this.rangeMap.entrySet()
+        return this.parkingLotsCapacity.entrySet()
                 .stream()
                 .max(Comparator.comparing(integerLongEntry -> integerLongEntry.getValue()))
                 .get()
                 .getKey();
-        return key;
     }
 
-    public int nullCounter(Map.Entry<Integer, ParkedVehicle> entry) {
+    public int findLotsEmptySpot(Map.Entry<Integer, ParkedVehicle> entry) {
         if ((entry.getKey()) % ROW_CAPACITY == 0) {
-            this.rangeMap.put(rangeKey+=1, nullCount);
-            nullCount = 0;
+            this.parkingLotsCapacity.put(lotNumber += 1, emptySpotCounter);
+            emptySpotCounter = 0;
         }
-        nullCount++;
+        emptySpotCounter++;
         return 0;
     }
 
@@ -103,12 +112,10 @@ public class ParkingLotSystem {
     }
 
     private void isParkingSlotEmpty() throws ParkingLotException {
-        if (parkingLots.containsValue(null)) {
-            AirportSecurity.setLotIsEmpty();
-            ParkingLotOwner.setLotIsEmpty();
-        } else {
-            AirportSecurity.setLotIsFull();
-            ParkingLotOwner.setLotIsFull();
-        }
+        if (parkingLots.containsValue(null))
+            this.parkingStatus = false;
+        else
+            this.parkingStatus = true;
+        observersHandler.notifyObservers(parkingStatus);
     }
 }
