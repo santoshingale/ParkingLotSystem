@@ -10,10 +10,6 @@ public class ObserversHandler {
         System.out.println(observer.toString());
     }
 
-    public void removeObserver(ParkingLotObserver observer) {
-        observers.remove(observer);
-    }
-
     public void notifyObservers(boolean parkingStatus) {
         for (ParkingLotObserver ob : observers) {
             ob.updateStatus(parkingStatus);

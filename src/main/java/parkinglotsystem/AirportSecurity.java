@@ -1,13 +1,10 @@
 package parkinglotsystem;
 
 public class AirportSecurity implements ParkingLotObserver {
-    private static boolean parkingStatus;
+    public static boolean securityStatus;
 
     public void updateStatus(boolean status) {
-        parkingStatus = status;
+        securityStatus = status;
     }
 
-    public static boolean isParkingStatus() {
-        return parkingStatus;
-    }
 }

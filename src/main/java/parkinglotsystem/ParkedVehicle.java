@@ -7,32 +7,18 @@ public class ParkedVehicle {
 
     public int lotNo;
     public int spotNo;
-    public boolean parkedStatus;
     public Driver driverType;
     public LocalDateTime parkedTime;
+    public VehicleSize vehicleSize;
 
-
-    public LocalDateTime getParkedTime() {
-        return parkedTime;
+    public ParkedVehicle(Driver driverType, VehicleSize vehicleSize) {
+        this.driverType = driverType;
+        this.vehicleSize = vehicleSize;
     }
 
     public void setParkedTime(LocalDateTime parkedTime) {
         this.parkedTime = parkedTime;
     }
 
-    public int getLotNo() {
-        return lotNo;
-    }
 
-    public void setLotNo(int lotNo) {
-        this.lotNo = lotNo;
-    }
-
-    public boolean isParkedStatus() {
-        return parkedStatus;
-    }
-
-    public void setParkedStatus(boolean parkedStatus) {
-        this.parkedStatus = parkedStatus;
-    }
 }

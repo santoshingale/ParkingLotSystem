@@ -46,8 +46,8 @@ public class ParkingLotSystem {
         throw new ParkingLotException("Car is not parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);
     }
 
-    public boolean parkCar(ParkedVehicle parkedVehicle, Driver driver, int... lotNo) throws ParkingLotException {
-        if (isParkingSlotEmpty() && driver == Driver.HANDICAP) {
+    public boolean parkVehicle(ParkedVehicle parkedVehicle, int... lotNo) throws ParkingLotException {
+        if (isParkingSlotEmpty() && parkedVehicle.driverType == Driver.HANDICAP) {
             return getSpotForHandicapDriver(parkedVehicle);
         } else if (isParkingSlotEmpty()) {
             int parkingLot = this.getEmptyParkingLot(lotNo);
@@ -70,10 +70,10 @@ public class ParkingLotSystem {
                 .stream().filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driverType != Driver.HANDICAP)
                 .findFirst().get();
         ParkedVehicle value = spotForHandicap.getValue();
-        parkedVehicle.spotNo = value.spotNo;
+        parkedVehicle.spotNo = spotForHandicap.getKey();
         parkingLots.get(RESERVED_LOT_FOR_HANDICAP).put(spotForHandicap.getKey(), parkedVehicle);
         if (value != null)
-            this.parkCar(value, value.driverType);
+            this.parkVehicle(value);
         return true;
     }
 
@@ -107,7 +107,7 @@ public class ParkingLotSystem {
             int carParkedLotNumber = parkedVehicle.lotNo;
             int carParkedSpotNumber = parkedVehicle.spotNo;
             LocalDateTime parkedTime = parkingLots.get(carParkedLotNumber).get(carParkedSpotNumber).parkedTime;
-            ParkingLotOwner.setParkedDuration(parkedTime);
+            ParkingLotOwner.parkedDuration = parkedTime;
             ParkedVehicle unparkedCar = parkingLots.get(carParkedLotNumber).get(carParkedSpotNumber);
             parkingLots.get(carParkedLotNumber).put(carParkedSpotNumber, null);
             isParkingSlotEmpty();
@@ -117,7 +117,7 @@ public class ParkingLotSystem {
     }
 
     public int findCarParkedSlotNumber(ParkedVehicle parkedVehicle1) {
-        return parkedVehicle1.getLotNo();
+        return parkedVehicle1.lotNo;
     }
 
     private boolean isParkingSlotEmpty() throws ParkingLotException {
