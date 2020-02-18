@@ -31,15 +31,15 @@ public class ParkingLotSystem {
     }
 
     private TreeMap<Integer, ParkedVehicle> getTreeMap() {
-        TreeMap<Integer, ParkedVehicle> objects = new TreeMap<>();
-        IntStream.range(1, ROW_CAPACITY + 1).forEach(i -> objects.put(i, null));
-        return objects;
+        TreeMap<Integer, ParkedVehicle> parkingSpots = new TreeMap<>();
+        IntStream.range(1, ROW_CAPACITY + 1).forEach(i -> parkingSpots.put(i, null));
+        return parkingSpots;
     }
 
-    public boolean isVehicleParked(ParkedVehicle parkedVehicle1) {
+    public boolean isVehicleParked(ParkedVehicle parkedVehicle) {
         if (parkingLots.entrySet()
                 .stream()
-                .filter(parkingLots -> parkingLots.getValue().containsValue(parkedVehicle1))
+                .filter(parkingLots -> parkingLots.getValue().containsValue(parkedVehicle))
                 .count() > 0) {
             return true;
         }
@@ -129,5 +129,17 @@ public class ParkingLotSystem {
             this.parkingStatus = true;
         observersHandler.notifyObservers(parkingStatus);
         return !parkingStatus;
+    }
+
+    public List<ParkedVehicle> getCarDetails(String carDetails) {
+        List<ParkedVehicle> sortedData = new ArrayList<ParkedVehicle>();
+        parkingLots.entrySet()
+                .stream()
+                .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
+                .filter(integerParkedVehicleEntry -> integerParkedVehicleEntry.getValue().toString().contains(carDetails))
+                .forEach(sortByColor ->{sortedData.add(sortByColor.getValue());
+                }));
+        System.out.println(sortedData.get(0));
+        return sortedData;
     }
 }

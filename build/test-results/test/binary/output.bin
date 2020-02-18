@@ -1,2 +1,5 @@
 *parkinglotsystem.ParkingLotOwner@54125922
 *parkinglotsystem.AirportSecurity@6d1aee3c
+‹[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-18T17:51:59.648651, vehicleSize=null, carColor='White'}, 2=null}]
+ƒ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-18T17:51:59.648651, vehicleSize=null, carColor='White'}, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=null, parkedTime=2020-02-18T17:51:59.649871, vehicleSize=null, carColor='Green'}}]
+}ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-18T17:51:59.648651, vehicleSize=null, carColor='White'}
