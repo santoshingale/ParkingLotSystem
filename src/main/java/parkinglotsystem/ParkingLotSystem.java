@@ -9,6 +9,7 @@ public class ParkingLotSystem {
     public int CAPACITY;
     public int NUMBER_OF_LOTS;
     public int ROW_CAPACITY;
+    public int RESERVED_LOT_FOR_HANDICAP = 1;
 
     ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
     AirportSecurity airportSecurity = new AirportSecurity();
@@ -23,13 +24,13 @@ public class ParkingLotSystem {
         ROW_CAPACITY = CAPACITY / NUMBER_OF_LOTS;
 
         IntStream.range(1, NUMBER_OF_LOTS + 1)
-                .forEach(i -> parkingLots.put(i, getArrayList()));
+                .forEach(i -> parkingLots.put(i, getTreeMap()));
 
         observersHandler.registerObserver(parkingLotOwner);
         observersHandler.registerObserver(airportSecurity);
     }
 
-    private TreeMap<Integer, ParkedVehicle> getArrayList() {
+    private TreeMap<Integer, ParkedVehicle> getTreeMap() {
         TreeMap<Integer, ParkedVehicle> objects = new TreeMap<>();
         IntStream.range(1, ROW_CAPACITY + 1).forEach(i -> objects.put(i, null));
         return objects;
@@ -38,15 +39,17 @@ public class ParkingLotSystem {
     public boolean isVehicleParked(ParkedVehicle parkedVehicle1) {
         if (parkingLots.entrySet()
                 .stream()
-                .filter(integerArrayListEntry -> integerArrayListEntry.getValue().containsValue(parkedVehicle1))
+                .filter(parkingLots -> parkingLots.getValue().containsValue(parkedVehicle1))
                 .count() > 0) {
             return true;
         }
         throw new ParkingLotException("Car is not parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);
     }
 
-    public boolean parkCar(ParkedVehicle parkedVehicle, int... lotNo) throws ParkingLotException {
-        if (isParkingSlotEmpty()) {
+    public boolean parkCar(ParkedVehicle parkedVehicle, Driver driver, int... lotNo) throws ParkingLotException {
+        if (isParkingSlotEmpty() && driver == Driver.HANDICAP) {
+            return getSpotForHandicapDriver(parkedVehicle);
+        } else if (isParkingSlotEmpty()) {
             int parkingLot = this.getEmptyParkingLot(lotNo);
             int spotNumber = this.getEmptySpot(parkingLot, lotNo);
             parkedVehicle.lotNo = parkingLot;
@@ -59,6 +62,19 @@ public class ParkingLotSystem {
         } else {
             throw new ParkingLotException("Lot is full", ParkingLotException.ExceptionType.LOT_FULL);
         }
+    }
+
+    private boolean getSpotForHandicapDriver(ParkedVehicle parkedVehicle) {
+        parkedVehicle.lotNo = RESERVED_LOT_FOR_HANDICAP;
+        Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(RESERVED_LOT_FOR_HANDICAP).entrySet()
+                .stream().filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driverType != Driver.HANDICAP)
+                .findFirst().get();
+        ParkedVehicle value = spotForHandicap.getValue();
+        parkedVehicle.spotNo = value.spotNo;
+        parkingLots.get(RESERVED_LOT_FOR_HANDICAP).put(spotForHandicap.getKey(), parkedVehicle);
+        if (value != null)
+            this.parkCar(value, value.driverType);
+        return true;
     }
 
     private int getEmptySpot(int parkingLot, int... spotNo) {
@@ -86,17 +102,18 @@ public class ParkingLotSystem {
         return lotNumber;
     }
 
-    public boolean unparkCar(ParkedVehicle parkedVehicle) throws ParkingLotException {
+    public ParkedVehicle unparkCar(ParkedVehicle parkedVehicle) throws ParkingLotException {
         if (isVehicleParked(parkedVehicle)) {
             int carParkedLotNumber = parkedVehicle.lotNo;
             int carParkedSpotNumber = parkedVehicle.spotNo;
             LocalDateTime parkedTime = parkingLots.get(carParkedLotNumber).get(carParkedSpotNumber).parkedTime;
             ParkingLotOwner.setParkedDuration(parkedTime);
+            ParkedVehicle unparkedCar = parkingLots.get(carParkedLotNumber).get(carParkedSpotNumber);
             parkingLots.get(carParkedLotNumber).put(carParkedSpotNumber, null);
             isParkingSlotEmpty();
-            return true;
+            return unparkedCar;
         }
-        return false;
+        return null;
     }
 
     public int findCarParkedSlotNumber(ParkedVehicle parkedVehicle1) {

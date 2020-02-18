@@ -1,10 +1,7 @@
-*parkinglotsystem.ParkingLotOwner@3c221163
-*parkinglotsystem.AirportSecurity@58badec7
-*parkinglotsystem.ParkingLotOwner@7bfdcd4d
-*parkinglotsystem.AirportSecurity@4d741212
-Î[{1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@4a744f75, 2=null, 3=null, 4=null}]
-ñ[{1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@2ec048d3, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@4a744f75, 2=null, 3=null, 4=null}]
-”[{1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@5d238f7a, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@2ec048d3, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@4a744f75, 2=null, 3=null, 4=null}]
-¶[{1=null, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@59b5868, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@5d238f7a, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@2ec048d3, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@4a744f75, 2=null, 3=null, 4=null}]
-Ù[{1=parkinglotsystem.ParkedVehicle@6d7cb049, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@59b5868, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@5d238f7a, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@2ec048d3, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@4a744f75, 2=null, 3=null, 4=null}]
-ü[{1=parkinglotsystem.ParkedVehicle@6d7cb049, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@59b5868, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@5d238f7a, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@2ec048d3, 2=null, 3=null, 4=null}, {1=parkinglotsystem.ParkedVehicle@4a744f75, 2=parkinglotsystem.ParkedVehicle@4156fbe5, 3=null, 4=null}]
+*parkinglotsystem.ParkingLotOwner@4e5f81b4
+*parkinglotsystem.AirportSecurity@1e7c071e
+*parkinglotsystem.ParkingLotOwner@456046bb
+*parkinglotsystem.AirportSecurity@74b4aa3e
+E[{1=parkinglotsystem.ParkedVehicle@97575bd, 2=null, 3=null, 4=null}]
+h[{1=parkinglotsystem.ParkedVehicle@5db4f61c, 2=parkinglotsystem.ParkedVehicle@97575bd, 3=null, 4=null}]
+‹[{1=parkinglotsystem.ParkedVehicle@5db4f61c, 2=parkinglotsystem.ParkedVehicle@97575bd, 3=parkinglotsystem.ParkedVehicle@6f3ecfe3, 4=null}]

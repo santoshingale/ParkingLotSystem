@@ -8,6 +8,7 @@ public class ParkedVehicle {
     public int lotNo;
     public int spotNo;
     public boolean parkedStatus;
+    public Driver driverType;
     public LocalDateTime parkedTime;
 
 
