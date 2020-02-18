@@ -1,13 +1,15 @@
-package parking_lot_system;
+package parkinglotsystem;
 
 import java.time.LocalDateTime;
 
 public class ParkedVehicle {
 
 
-    private int lotNo;
-    private boolean parkedStatus;
-    private LocalDateTime parkedTime;
+    public int lotNo;
+    public int spotNo;
+    public boolean parkedStatus;
+    public LocalDateTime parkedTime;
+
 
     public LocalDateTime getParkedTime() {
         return parkedTime;

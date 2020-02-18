@@ -1,4 +1,4 @@
-package parking_lot_system;
+package parkinglotsystem;
 
 public class AirportSecurity implements ParkingLotObserver {
     private static boolean parkingStatus;

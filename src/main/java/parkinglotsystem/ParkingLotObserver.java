@@ -1,4 +1,4 @@
-package parking_lot_system;
+package parkinglotsystem;
 
 public interface ParkingLotObserver {
     void updateStatus(boolean status);

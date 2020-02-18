@@ -1,9 +1,9 @@
-package parking_lot_system_test;
+package parkinglotsystemtest;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import parking_lot_system.*;
+import parkinglotsystem.*;
 import java.time.LocalDateTime;
 
 public class ParkingLotSystemTest {
@@ -65,14 +65,14 @@ public class ParkingLotSystemTest {
 
     @Test
     public void whenGivenPerticularLotNo_shouldAbleToPark() throws ParkingLotException {
-        Assert.assertTrue(parkingLotSystem.parkCar(parkedVehicle1, 2));
+        Assert.assertTrue(parkingLotSystem.parkCar(parkedVehicle1, 1,2));
     }
 
     @Test
     public void whenCarIsPark_shouldAbleToFindVehicle() throws ParkingLotException {
-        parkingLotSystem.parkCar(parkedVehicle1, 2);
+        parkingLotSystem.parkCar(parkedVehicle1, 1,2);
         int carParkedLotNumber = parkingLotSystem.findCarParkedSlotNumber(parkedVehicle1);
-        Assert.assertEquals(2, carParkedLotNumber);
+        Assert.assertEquals(1, carParkedLotNumber);
     }
 
     @Test
@@ -84,13 +84,14 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void whenCarGettingUnpark_shouldOwnerKnowParkingTim() throws ParkingLotException {
-        ParkingLotSystem parkingLotSystem = new ParkingLotSystem(100,1);
+    public void givenMultipleCars_shouldAbleToParkEvenly() throws ParkingLotException {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem(20,5);
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());
         parkingLotSystem.parkCar(new ParkedVehicle());
-        parkingLotSystem.parkCar(new ParkedVehicle());
+        parkingLotSystem.parkCar(parkedVehicle1);
+        Assert.assertEquals(2,parkedVehicle1.spotNo);
     }
 }
