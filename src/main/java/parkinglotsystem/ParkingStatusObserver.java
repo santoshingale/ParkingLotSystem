@@ -7,7 +7,6 @@ public class ParkingStatusObserver {
 
     public void registerObserver(ParkingLotObserver observer) {
         observers.add(observer);
-        System.out.println(observer.toString());
     }
 
     public void notifyObservers(boolean parkingStatus) {

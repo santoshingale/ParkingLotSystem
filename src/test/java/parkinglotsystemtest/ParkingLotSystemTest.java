@@ -42,14 +42,14 @@ public class ParkingLotSystemTest {
     @Test
     public void givenVehicle_whenParkingLotIsEmpty_shouldInformOwner() throws ParkingLotException {
         parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
-        Assert.assertFalse(ParkingLotOwner.isParkingStatus());
+        Assert.assertFalse(ParkingLotOwner.parkingStatus);
     }
 
     @Test
     public void givenVehicle_whenParkingLotIsFull_shouldInformOwner() throws ParkingLotException {
         parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
-        Assert.assertTrue(ParkingLotOwner.isParkingStatus());
+        Assert.assertTrue(ParkingLotOwner.parkingStatus);
     }
 
     @Test
@@ -69,9 +69,9 @@ public class ParkingLotSystemTest {
     public void givenVehicle_whenCarIsUnparked_shouldChangeTheStatusOfParkingLotToEmpty() {
         parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         parkingLotSystem.parkVehicle(parkedVehicle);
-        Assert.assertTrue(ParkingLotOwner.isParkingStatus());
+        Assert.assertTrue(ParkingLotOwner.parkingStatus);
         parkingLotSystem.unparkCar(parkedVehicle);
-        Assert.assertFalse(ParkingLotOwner.isParkingStatus());
+        Assert.assertFalse(ParkingLotOwner.parkingStatus);
     }
 
     @Test
@@ -107,7 +107,14 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenLargeVehicleToPark_shouldAbleToPark() {
-        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.HANDICAP_DRIVER);
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem(10, 1);
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.LARGE_VEHICLE_DRIVER);
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER);
+        parkingLotSystem.parkVehicle(parkedVehicle1);
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.unparkCar(parkedVehicle1);
         Assert.assertTrue(parkingLotSystem.parkVehicle(parkedVehicle));
     }
 

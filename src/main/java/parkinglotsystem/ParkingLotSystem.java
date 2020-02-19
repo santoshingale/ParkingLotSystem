@@ -12,7 +12,6 @@ public class ParkingLotSystem {
     public int PARKING_LOT_CAPACITY;
     public int NUMBER_OF_LOTS;
     public int ROW_CAPACITY;
-    public int RESERVED_LOT_FOR_HANDICAP = 1;
     public String parkingAttendant = "xyz";
 
 
@@ -44,7 +43,7 @@ public class ParkingLotSystem {
     public boolean isVehicleParked(ParkedVehicle parkedVehicle) {
         if (parkingLots.entrySet()
                 .stream()
-                .filter(parkingLots -> parkingLots.getValue().containsValue(parkedVehicle))
+                .filter(parkingLot -> parkingLot.getValue().containsValue(parkedVehicle))
                 .count() > 0) {
             return true;
         }
@@ -52,38 +51,68 @@ public class ParkingLotSystem {
     }
 
     public boolean parkVehicle(ParkedVehicle parkedVehicle) throws ParkingLotException {
-        if(isParkingSlotEmpty())
+        if (isParkingSlotEmpty())
             return parkedVehicle.driver.getVehicleParked(parkedVehicle, this);
         throw new ParkingLotException("Lot is full", ParkingLotException.ExceptionType.LOT_FULL);
     }
 
     public boolean getSpotForNormalDriver(ParkedVehicle parkedVehicle) {
-            int parkingLot = this.getEmptyParkingLot();
+        if (parkedVehicle.lotNo == 0 || parkedVehicle.spotNo == 0) {
+            int parkingLot = this.getParkingLot();
             int spotNumber = this.getEmptySpot(parkingLot);
             parkedVehicle.lotNo = parkingLot;
             parkedVehicle.spotNo = spotNumber;
-            parkedVehicle.attendantName = parkingAttendant;
-            parkedVehicle.setParkedTime(LocalDateTime.now());
-            parkingLots.get(parkingLot).put(spotNumber, parkedVehicle);
-            isParkingSlotEmpty();
-            System.out.println(parkingLots.values());
-            return true;
+        }
+        parkedVehicle.attendantName = parkingAttendant;
+        parkedVehicle.setParkedTime(LocalDateTime.now());
+        parkingLots.get(parkedVehicle.lotNo).put(parkedVehicle.spotNo, parkedVehicle);
+        isParkingSlotEmpty();
+        System.out.println(parkingLots.values());
+        return true;
     }
 
     public boolean getSpotForHandicapDriver(ParkedVehicle parkedVehicle) {
-            parkedVehicle.lotNo = RESERVED_LOT_FOR_HANDICAP;
-            Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(RESERVED_LOT_FOR_HANDICAP).entrySet()
-                    .stream()
-                    .filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driver != Driver.HANDICAP_DRIVER)
-                    .findFirst().get();
+        parkedVehicle.lotNo = this.getParkingLot();
+        Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(parkedVehicle.lotNo)
+                .entrySet()
+                .stream()
+                .filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driver != Driver.HANDICAP_DRIVER)
+                .findFirst().get();
 
-            ParkedVehicle parkedVehicle1 = spotForHandicap.getValue();
-            parkedVehicle.spotNo = spotForHandicap.getKey();
-            parkingLots.get(RESERVED_LOT_FOR_HANDICAP).put(spotForHandicap.getKey(), parkedVehicle);
+        ParkedVehicle parkedVehicle1 = spotForHandicap.getValue();
+        parkedVehicle.spotNo = spotForHandicap.getKey();
+        parkingLots.get(parkedVehicle.lotNo).put(spotForHandicap.getKey(), parkedVehicle);
         if (parkedVehicle1 != null)
             this.parkVehicle(parkedVehicle1);
         return true;
     }
+
+    public boolean getSpotForLargeVehicleDriver(ParkedVehicle parkedVehicle) {
+        int parkingLot = this.getParkingLot();
+        int spotNumber = parkingLots.get(parkingLot)
+                .entrySet()
+                .stream()
+                .filter(spotNumberForLargeVehicle -> spotNumberForLargeVehicle.getValue() == null).filter(
+                        integerParkedVehicleEntry -> {
+                            return getFilterLargeEmptySpace(parkingLot, integerParkedVehicleEntry);
+                        }
+                ).findFirst()
+                .get()
+                .getKey();
+        parkedVehicle.lotNo = parkingLot;
+        parkedVehicle.spotNo = spotNumber + 1;
+        this.getSpotForNormalDriver(parkedVehicle);
+        return true;
+    }
+
+    private boolean getFilterLargeEmptySpace(int parkingLot, Map.Entry<Integer, ParkedVehicle> integerParkedVehicleEntry) {
+        Integer emptySpot = integerParkedVehicleEntry.getKey();
+        for (int i = emptySpot + 1; i < emptySpot + 3; i++)
+            if (parkingLots.get(parkingLot).get(i) != null)
+                return false;
+        return true;
+    }
+
 
     private int getEmptySpot(int parkingLot) {
         Integer key = parkingLots.get(parkingLot)
@@ -93,7 +122,7 @@ public class ParkingLotSystem {
         return key;
     }
 
-    private int getEmptyParkingLot() {
+    private int getParkingLot() {
         int lotNumber = parkingLots.entrySet()
                 .stream()
                 .sorted(Comparator.comparing(lots -> lots.getValue()
@@ -139,15 +168,17 @@ public class ParkingLotSystem {
                         .filter(slotNumber -> slotNumber.getValue() != null)
                         .filter(
                                 parkedVehicle -> {
-                                    for (int i = 0; i < carDetails.length; i++) {
-                                        if (!parkedVehicle.getValue().toString().contains(carDetails[i]))
-                                            return false;
-                                    }
-                                    return true;
+                                    return getFilteredByCarDetails(parkedVehicle, carDetails);
                                 })
-                        .forEach(sortByDetails -> {
-                            sortedVehicleByDetails.add(sortByDetails.getValue());
-                        }));
+                        .forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails.getValue())
+                        ));
         return sortedVehicleByDetails;
+    }
+
+    private boolean getFilteredByCarDetails(Map.Entry<Integer, ParkedVehicle> parkedVehicle, String[] carDetails) {
+        for (int i = 0; i < carDetails.length; i++)
+            if (!parkedVehicle.getValue().toString().contains(carDetails[i]))
+                return false;
+        return true;
     }
 }
