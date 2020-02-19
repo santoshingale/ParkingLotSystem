@@ -1,4 +1,6 @@
-package parkinglotsystem;
+package parkinglotsystem.services;
+
+import parkinglotsystem.services.ParkingLotObserver;
 
 import java.util.ArrayList;
 

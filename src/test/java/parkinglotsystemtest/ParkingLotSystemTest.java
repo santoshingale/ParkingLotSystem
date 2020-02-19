@@ -6,7 +6,9 @@ import org.junit.Test;
 import parkinglotsystem.*;
 import parkinglotsystem.enumerate.Driver;
 import parkinglotsystem.exception.ParkingLotException;
-import parkinglotsystem.AirportSecurity;
+import parkinglotsystem.services.AirportSecurity;
+import parkinglotsystem.services.ParkedVehicle;
+import parkinglotsystem.services.ParkingLotOwner;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -138,5 +140,17 @@ public class ParkingLotSystemTest {
         parkingLotSystem.parkVehicle(parkedVehicle1);
         List<ParkedVehicle> white = parkingLotSystem.getCarDetails("Blue", "Toyota");
         Assert.assertEquals(white.get(0), parkedVehicle1);
+    }
+
+    @Test
+    public void givenVehicle_whenItIsBMW_shouldReturnThatVehicles() {
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
+        parkedVehicle.carManufacturer = "BMW";
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
+        parkedVehicle1.carManufacturer = "Toyota";
+        parkingLotSystem.parkVehicle(parkedVehicle);
+        parkingLotSystem.parkVehicle(parkedVehicle1);
+        List<ParkedVehicle> white = parkingLotSystem.getCarDetails("BMW");
+        Assert.assertEquals(white.get(0), parkedVehicle);
     }
 }

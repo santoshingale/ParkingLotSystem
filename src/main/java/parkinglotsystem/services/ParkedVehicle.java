@@ -1,4 +1,4 @@
-package parkinglotsystem;
+package parkinglotsystem.services;
 
 import parkinglotsystem.enumerate.Driver;
 

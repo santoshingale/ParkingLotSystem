@@ -2,6 +2,10 @@ package parkinglotsystem;
 
 import parkinglotsystem.enumerate.Driver;
 import parkinglotsystem.exception.ParkingLotException;
+import parkinglotsystem.services.AirportSecurity;
+import parkinglotsystem.services.ParkedVehicle;
+import parkinglotsystem.services.ParkingLotOwner;
+import parkinglotsystem.services.ParkingStatusObserver;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -9,18 +13,18 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public int PARKING_LOT_CAPACITY;
-    public int NUMBER_OF_LOTS;
-    public int ROW_CAPACITY;
-    public String parkingAttendant = "xyz";
+    private int PARKING_LOT_CAPACITY;
+    private int NUMBER_OF_LOTS;
+    private int ROW_CAPACITY;
+    private String parkingAttendant = "xyz";
 
 
     ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
     AirportSecurity airportSecurity = new AirportSecurity();
     ParkingStatusObserver parkingStatusObserver = new ParkingStatusObserver();
 
-    public Map<Integer, TreeMap<Integer, ParkedVehicle>> parkingLots = new TreeMap<>();
-    public boolean parkingStatus;
+    private Map<Integer, TreeMap<Integer, ParkedVehicle>> parkingLots = new TreeMap<>();
+    private boolean parkingStatus;
 
     public ParkingLotSystem(int capacity, int numberoflots) {
         PARKING_LOT_CAPACITY = capacity;
@@ -50,7 +54,7 @@ public class ParkingLotSystem {
         throw new ParkingLotException("Car is not parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);
     }
 
-    public boolean parkVehicle(ParkedVehicle parkedVehicle) throws ParkingLotException {
+    public boolean parkVehicle(ParkedVehicle parkedVehicle) {
         if (isParkingSlotEmpty())
             return parkedVehicle.driver.getVehicleParked(parkedVehicle, this);
         throw new ParkingLotException("Lot is full", ParkingLotException.ExceptionType.LOT_FULL);
@@ -67,7 +71,6 @@ public class ParkingLotSystem {
         parkedVehicle.setParkedTime(LocalDateTime.now());
         parkingLots.get(parkedVehicle.lotNo).put(parkedVehicle.spotNo, parkedVehicle);
         isParkingSlotEmpty();
-        System.out.println(parkingLots.values());
         return true;
     }
 
@@ -92,11 +95,9 @@ public class ParkingLotSystem {
         int spotNumber = parkingLots.get(parkingLot)
                 .entrySet()
                 .stream()
-                .filter(spotNumberForLargeVehicle -> spotNumberForLargeVehicle.getValue() == null).filter(
-                        integerParkedVehicleEntry -> {
-                            return getFilterLargeEmptySpace(parkingLot, integerParkedVehicleEntry);
-                        }
-                ).findFirst()
+                .filter(spotNumberForLargeVehicle -> spotNumberForLargeVehicle.getValue() == null)
+                .filter(integerParkedVehicleEntry -> getFilterLargeEmptySpace(parkingLot, integerParkedVehicleEntry))
+                .findFirst()
                 .get()
                 .getKey();
         parkedVehicle.lotNo = parkingLot;
@@ -115,25 +116,23 @@ public class ParkingLotSystem {
 
 
     private int getEmptySpot(int parkingLot) {
-        Integer key = parkingLots.get(parkingLot)
+        return parkingLots.get(parkingLot)
                 .entrySet().stream()
                 .filter(spotNumber -> spotNumber.getValue() == null)
                 .findFirst().get().getKey();
-        return key;
     }
 
     private int getParkingLot() {
-        int lotNumber = parkingLots.entrySet()
+        return parkingLots.entrySet()
                 .stream()
                 .sorted(Comparator.comparing(lots -> lots.getValue()
                         .entrySet().stream().filter(spot -> spot.getValue() == null).count()))
                 .reduce((first, second) -> second)
                 .orElse(null)
                 .getKey();
-        return lotNumber;
     }
 
-    public ParkedVehicle unparkCar(ParkedVehicle parkedVehicle) throws ParkingLotException {
+    public ParkedVehicle unparkCar(ParkedVehicle parkedVehicle) {
         if (isVehicleParked(parkedVehicle)) {
             int carParkedLotNumber = parkedVehicle.lotNo;
             int carParkedSpotNumber = parkedVehicle.spotNo;
@@ -147,7 +146,7 @@ public class ParkingLotSystem {
         return null;
     }
 
-    private boolean isParkingSlotEmpty() throws ParkingLotException {
+    private boolean isParkingSlotEmpty() {
         if (parkingLots.entrySet().stream()
                 .filter(parkingSlot -> parkingSlot.getValue().containsValue(null))
                 .count() > 0) {
@@ -162,14 +161,12 @@ public class ParkingLotSystem {
 
     public List<ParkedVehicle> getCarDetails(String... carDetails) {
         List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<>();
+
         parkingLots.entrySet()
                 .stream()
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
-                        .filter(
-                                parkedVehicle -> {
-                                    return getFilteredByCarDetails(parkedVehicle, carDetails);
-                                })
+                        .filter(parkedVehicle -> getFilteredByCarDetails(parkedVehicle, carDetails))
                         .forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails.getValue())
                         ));
         return sortedVehicleByDetails;
