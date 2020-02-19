@@ -10,6 +10,8 @@ public class ParkingLotSystem {
     public int NUMBER_OF_LOTS;
     public int ROW_CAPACITY;
     public int RESERVED_LOT_FOR_HANDICAP = 1;
+    public String parkingAttendant = "xyz";
+
 
     ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
     AirportSecurity airportSecurity = new AirportSecurity();
@@ -54,6 +56,7 @@ public class ParkingLotSystem {
             int spotNumber = this.getEmptySpot(parkingLot, lotNo);
             parkedVehicle.lotNo = parkingLot;
             parkedVehicle.spotNo = spotNumber;
+            parkedVehicle.attendantName = parkingAttendant;
             parkedVehicle.setParkedTime(LocalDateTime.now());
             parkingLots.get(parkingLot).put(spotNumber, parkedVehicle);
             isParkingSlotEmpty();
@@ -143,9 +146,8 @@ public class ParkingLotSystem {
                         .filter(
                                 parkedVehicle -> {
                                     for (int i = 0; i < carDetails.length; i++) {
-                                        if (!parkedVehicle.getValue().toString().contains(carDetails[i])) {
+                                        if (!parkedVehicle.getValue().toString().contains(carDetails[i]))
                                             return false;
-                                        }
                                     }
                                     return true;
                                 })

@@ -129,4 +129,14 @@ public class ParkingLotSystemTest {
         List<ParkedVehicle> white = parkingLotSystem.getCarDetails("White");
         Assert.assertEquals(white.get(0),parkedVehicle);
     }
+
+    @Test
+    public void givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles() {
+        ParkedVehicle parkedVehicle = new ParkedVehicle("Blue","BMW");
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle("Blue","Toyota");
+        parkingLotSystem.parkVehicle(parkedVehicle);
+        parkingLotSystem.parkVehicle(parkedVehicle1);
+        List<ParkedVehicle> white = parkingLotSystem.getCarDetails("Blue","Toyota");
+        Assert.assertEquals(white.get(0),parkedVehicle1);
+    }
 }

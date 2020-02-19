@@ -11,6 +11,9 @@ public class ParkedVehicle {
     public LocalDateTime parkedTime;
     public VehicleSize vehicleSize;
     public String carColor;
+    public String plateNumber;
+    public String carManufacturer;
+    public String attendantName;
 
 
     public ParkedVehicle(Driver driverType, VehicleSize vehicleSize) {
@@ -20,6 +23,11 @@ public class ParkedVehicle {
 
     public ParkedVehicle(String carColor) {
         this.carColor = carColor;
+    }
+
+    public ParkedVehicle(String carColor, String carManufacturer) {
+        this.carColor = carColor;
+        this.carManufacturer = carManufacturer;
     }
 
     public void setParkedTime(LocalDateTime parkedTime) {
@@ -35,6 +43,9 @@ public class ParkedVehicle {
                 ", parkedTime=" + parkedTime +
                 ", vehicleSize=" + vehicleSize +
                 ", carColor='" + carColor + '\'' +
+                ", plateNumber='" + plateNumber + '\'' +
+                ", carManufacturer='" + carManufacturer + '\'' +
+                ", attendantName='" + attendantName + '\'' +
                 '}';
     }
 }

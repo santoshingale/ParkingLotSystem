@@ -1,4 +1,69 @@
-*parkinglotsystem.ParkingLotOwner@6deaa486
-(parkinglotsystem.AirportSecurity@bf9d81
-‹[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-19T09:20:15.856789, vehicleSize=null, carColor='White'}, 2=null}]
-ƒ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-19T09:20:15.856789, vehicleSize=null, carColor='White'}, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=null, parkedTime=2020-02-19T09:20:15.857855, vehicleSize=null, carColor='Green'}}]
+*parkinglotsystem.ParkingLotOwner@76ec1c57
+*parkinglotsystem.AirportSecurity@11b98e85
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.814575, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+*parkinglotsystem.ParkingLotOwner@64f2a745
+*parkinglotsystem.AirportSecurity@599b9e62
+Õ[{1=null, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.820150, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}}]
+)parkinglotsystem.ParkingLotOwner@c48252e
+*parkinglotsystem.AirportSecurity@24670d5e
+Õ[{1=null, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.823663, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}}]
+*parkinglotsystem.ParkingLotOwner@555e4e18
+*parkinglotsystem.AirportSecurity@50b3b25f
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.847205, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+*parkinglotsystem.ParkingLotOwner@6b6bb040
+)parkinglotsystem.AirportSecurity@a744f03
+Ì[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-19T10:35:10.850506, vehicleSize=null, carColor='White', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+…[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-19T10:35:10.850506, vehicleSize=null, carColor='White', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=null, parkedTime=2020-02-19T10:35:10.850929, vehicleSize=null, carColor='Green', plateNumber='null', carManufacturer='null', attendantName='xyz'}}]
+*parkinglotsystem.ParkingLotOwner@2eff4337
+*parkinglotsystem.AirportSecurity@7a9c7536
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.860283, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+—[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.860283, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.860679, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}}]
+)parkinglotsystem.ParkingLotOwner@99acd41
+*parkinglotsystem.AirportSecurity@47f22880
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.861915, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+	*parkinglotsystem.ParkingLotOwner@13402db2
+	)parkinglotsystem.AirportSecurity@aeccf29
+
+)parkinglotsystem.ParkingLotOwner@3a36ff0
+
+*parkinglotsystem.AirportSecurity@111cff8b
+
+*parkinglotsystem.ParkingLotOwner@7de5ff06
+
+*parkinglotsystem.AirportSecurity@37330731
+
+ç[{1=null, 2=null}, {1=ParkedVehicle{lotNo=2, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.883318, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+
+©[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.887043, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}, {1=ParkedVehicle{lotNo=2, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.883318, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+
+Ñ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=HANDICAP, parkedTime=null, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='null'}, 2=null}, {1=ParkedVehicle{lotNo=2, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.883318, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=2, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.887804, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}}]
+*parkinglotsystem.ParkingLotOwner@5961701a
+)parkinglotsystem.AirportSecurity@baeb9ff
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.890526, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+*parkinglotsystem.ParkingLotOwner@248b3d34
+*parkinglotsystem.AirportSecurity@327cba0f
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.892370, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+*parkinglotsystem.ParkingLotOwner@604ffdfa
+*parkinglotsystem.AirportSecurity@1e50c14d
+*parkinglotsystem.ParkingLotOwner@634f2d2e
+*parkinglotsystem.AirportSecurity@34345f8a
+í[{1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=5, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.894728, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}]
+¯[{1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=4, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.895430, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=5, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.894728, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}]
+ñ[{1=null, 2=null, 3=null, 4=null}, {1=null, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=3, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898275, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=4, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.895430, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=5, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.894728, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}]
+³[{1=null, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=2, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898993, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=3, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898275, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=4, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.895430, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=5, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.894728, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}]
+õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.899662, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=2, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898993, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=3, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898275, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=4, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.895430, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=5, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.894728, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}]
+·
+[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.899662, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=2, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898993, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=3, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898275, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=4, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.895430, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=5, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.894728, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=5, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.900208, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 3=null, 4=null}]
+ù[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.899662, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=2, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898993, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=3, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.898275, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null, 3=null, 4=null}, {1=ParkedVehicle{lotNo=4, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.895430, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=4, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.900775, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 3=null, 4=null}, {1=ParkedVehicle{lotNo=5, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.894728, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=5, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.900208, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 3=null, 4=null}]
+*parkinglotsystem.ParkingLotOwner@2b0bd4db
+*parkinglotsystem.AirportSecurity@3349325e
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.901695, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+—[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.901695, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.901941, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}}]
+*parkinglotsystem.ParkingLotOwner@29f55f44
+*parkinglotsystem.AirportSecurity@3fab9dff
+Ê[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-19T10:35:10.902884, vehicleSize=null, carColor='Blue', plateNumber='null', carManufacturer='BMW', attendantName='xyz'}, 2=null}]
+„[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=null, parkedTime=2020-02-19T10:35:10.902884, vehicleSize=null, carColor='Blue', plateNumber='null', carManufacturer='BMW', attendantName='xyz'}, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=null, parkedTime=2020-02-19T10:35:10.903138, vehicleSize=null, carColor='Blue', plateNumber='null', carManufacturer='Toyota', attendantName='xyz'}}]
+*parkinglotsystem.ParkingLotOwner@4af32bdd
+*parkinglotsystem.AirportSecurity@30d23b1f
+Õ[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.903982, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=null}]
+—[{1=ParkedVehicle{lotNo=1, spotNo=1, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.903982, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}, 2=ParkedVehicle{lotNo=1, spotNo=2, driverType=NORMAL_DRIVER, parkedTime=2020-02-19T10:35:10.904175, vehicleSize=SMALL, carColor='null', plateNumber='null', carManufacturer='null', attendantName='xyz'}}]
