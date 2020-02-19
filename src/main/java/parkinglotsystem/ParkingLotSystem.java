@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 public class ParkingLotSystem {
 
-    public int CAPACITY;
+    public int PARKING_LOT_CAPACITY;
     public int NUMBER_OF_LOTS;
     public int ROW_CAPACITY;
     public int RESERVED_LOT_FOR_HANDICAP = 1;
@@ -19,18 +19,18 @@ public class ParkingLotSystem {
     public boolean parkingStatus;
 
     public ParkingLotSystem(int capacity, int numberoflots) {
-        CAPACITY = capacity;
+        PARKING_LOT_CAPACITY = capacity;
         NUMBER_OF_LOTS = numberoflots;
-        ROW_CAPACITY = CAPACITY / NUMBER_OF_LOTS;
+        ROW_CAPACITY = PARKING_LOT_CAPACITY / NUMBER_OF_LOTS;
 
         IntStream.range(1, NUMBER_OF_LOTS + 1)
-                .forEach(i -> parkingLots.put(i, getTreeMap()));
+                .forEach(i -> parkingLots.put(i, getNullTreeMap()));
 
         observersHandler.registerObserver(parkingLotOwner);
         observersHandler.registerObserver(airportSecurity);
     }
 
-    private TreeMap<Integer, ParkedVehicle> getTreeMap() {
+    private TreeMap<Integer, ParkedVehicle> getNullTreeMap() {
         TreeMap<Integer, ParkedVehicle> parkingSpots = new TreeMap<>();
         IntStream.range(1, ROW_CAPACITY + 1).forEach(i -> parkingSpots.put(i, null));
         return parkingSpots;
@@ -66,12 +66,15 @@ public class ParkingLotSystem {
 
     private boolean getSpotForHandicapDriver(ParkedVehicle parkedVehicle) {
         parkedVehicle.lotNo = RESERVED_LOT_FOR_HANDICAP;
+
         Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(RESERVED_LOT_FOR_HANDICAP).entrySet()
                 .stream().filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driverType != Driver.HANDICAP)
                 .findFirst().get();
+
         ParkedVehicle value = spotForHandicap.getValue();
         parkedVehicle.spotNo = spotForHandicap.getKey();
         parkingLots.get(RESERVED_LOT_FOR_HANDICAP).put(spotForHandicap.getKey(), parkedVehicle);
+
         if (value != null)
             this.parkVehicle(value);
         return true;
@@ -116,7 +119,7 @@ public class ParkingLotSystem {
         return null;
     }
 
-    public int findCarParkedSlotNumber(ParkedVehicle parkedVehicle1) {
+    public int findCarParkedBySlotNumber(ParkedVehicle parkedVehicle1) {
         return parkedVehicle1.lotNo;
     }
 
@@ -131,15 +134,24 @@ public class ParkingLotSystem {
         return !parkingStatus;
     }
 
-    public List<ParkedVehicle> getCarDetails(String carDetails) {
-        List<ParkedVehicle> sortedData = new ArrayList<ParkedVehicle>();
+    public List<ParkedVehicle> getCarDetails(String... carDetails) {
+        List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<ParkedVehicle>();
         parkingLots.entrySet()
                 .stream()
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
-                .filter(integerParkedVehicleEntry -> integerParkedVehicleEntry.getValue().toString().contains(carDetails))
-                .forEach(sortByColor ->{sortedData.add(sortByColor.getValue());
-                }));
-        System.out.println(sortedData.get(0));
-        return sortedData;
+                        .filter(slotNumber -> slotNumber.getValue() != null)
+                        .filter(
+                                parkedVehicle -> {
+                                    for (int i = 0; i < carDetails.length; i++) {
+                                        if (!parkedVehicle.getValue().toString().contains(carDetails[i])) {
+                                            return false;
+                                        }
+                                    }
+                                    return true;
+                                })
+                        .forEach(sortByDetails -> {
+                            sortedVehicleByDetails.add(sortByDetails.getValue());
+                        }));
+        return sortedVehicleByDetails;
     }
 }

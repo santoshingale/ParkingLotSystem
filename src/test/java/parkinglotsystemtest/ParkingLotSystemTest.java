@@ -79,7 +79,7 @@ public class ParkingLotSystemTest {
     @Test
     public void givenVehicle_whenCarIsPark_shouldAbleToFindVehicle() throws ParkingLotException {
         parkingLotSystem.parkVehicle(parkedVehicle, 1, 2);
-        int carParkedLotNumber = parkingLotSystem.findCarParkedSlotNumber(parkedVehicle);
+        int carParkedLotNumber = parkingLotSystem.findCarParkedBySlotNumber(parkedVehicle);
         Assert.assertEquals(1, carParkedLotNumber);
     }
 
@@ -121,7 +121,7 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenVehicle_whenVehiclesAreParked_shouldReturnVehicleByColor() {
+    public void givenVehicle_whenWhiteVehiclesAreParked_shouldReturnThatVehicles() {
         ParkedVehicle parkedVehicle = new ParkedVehicle("White");
         ParkedVehicle parkedVehicle1 = new ParkedVehicle("Green");
         parkingLotSystem.parkVehicle(parkedVehicle);
