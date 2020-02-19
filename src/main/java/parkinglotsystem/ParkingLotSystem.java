@@ -1,5 +1,8 @@
 package parkinglotsystem;
 
+import parkinglotsystem.enumerate.Driver;
+import parkinglotsystem.exception.ParkingLotException;
+
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.IntStream;
@@ -15,7 +18,7 @@ public class ParkingLotSystem {
 
     ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
     AirportSecurity airportSecurity = new AirportSecurity();
-    ObserversHandler observersHandler = new ObserversHandler();
+    ParkingStatusObserver parkingStatusObserver = new ParkingStatusObserver();
 
     public Map<Integer, TreeMap<Integer, ParkedVehicle>> parkingLots = new TreeMap<>();
     public boolean parkingStatus;
@@ -28,8 +31,8 @@ public class ParkingLotSystem {
         IntStream.range(1, NUMBER_OF_LOTS + 1)
                 .forEach(i -> parkingLots.put(i, getNullTreeMap()));
 
-        observersHandler.registerObserver(parkingLotOwner);
-        observersHandler.registerObserver(airportSecurity);
+        parkingStatusObserver.registerObserver(parkingLotOwner);
+        parkingStatusObserver.registerObserver(airportSecurity);
     }
 
     private TreeMap<Integer, ParkedVehicle> getNullTreeMap() {
@@ -48,12 +51,15 @@ public class ParkingLotSystem {
         throw new ParkingLotException("Car is not parked", ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);
     }
 
-    public boolean parkVehicle(ParkedVehicle parkedVehicle, int... lotNo) throws ParkingLotException {
-        if (isParkingSlotEmpty() && parkedVehicle.driverType == Driver.HANDICAP) {
-            return getSpotForHandicapDriver(parkedVehicle);
-        } else if (isParkingSlotEmpty()) {
-            int parkingLot = this.getEmptyParkingLot(lotNo);
-            int spotNumber = this.getEmptySpot(parkingLot, lotNo);
+    public boolean parkVehicle(ParkedVehicle parkedVehicle) throws ParkingLotException {
+        if(isParkingSlotEmpty())
+            return parkedVehicle.driver.getVehicleParked(parkedVehicle, this);
+        throw new ParkingLotException("Lot is full", ParkingLotException.ExceptionType.LOT_FULL);
+    }
+
+    public boolean getSpotForNormalDriver(ParkedVehicle parkedVehicle) {
+            int parkingLot = this.getEmptyParkingLot();
+            int spotNumber = this.getEmptySpot(parkingLot);
             parkedVehicle.lotNo = parkingLot;
             parkedVehicle.spotNo = spotNumber;
             parkedVehicle.attendantName = parkingAttendant;
@@ -62,31 +68,24 @@ public class ParkingLotSystem {
             isParkingSlotEmpty();
             System.out.println(parkingLots.values());
             return true;
-        } else {
-            throw new ParkingLotException("Lot is full", ParkingLotException.ExceptionType.LOT_FULL);
-        }
     }
 
-    private boolean getSpotForHandicapDriver(ParkedVehicle parkedVehicle) {
-        parkedVehicle.lotNo = RESERVED_LOT_FOR_HANDICAP;
+    public boolean getSpotForHandicapDriver(ParkedVehicle parkedVehicle) {
+            parkedVehicle.lotNo = RESERVED_LOT_FOR_HANDICAP;
+            Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(RESERVED_LOT_FOR_HANDICAP).entrySet()
+                    .stream()
+                    .filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driver != Driver.HANDICAP_DRIVER)
+                    .findFirst().get();
 
-        Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(RESERVED_LOT_FOR_HANDICAP).entrySet()
-                .stream().filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driverType != Driver.HANDICAP)
-                .findFirst().get();
-
-        ParkedVehicle value = spotForHandicap.getValue();
-        parkedVehicle.spotNo = spotForHandicap.getKey();
-        parkingLots.get(RESERVED_LOT_FOR_HANDICAP).put(spotForHandicap.getKey(), parkedVehicle);
-
-        if (value != null)
-            this.parkVehicle(value);
+            ParkedVehicle parkedVehicle1 = spotForHandicap.getValue();
+            parkedVehicle.spotNo = spotForHandicap.getKey();
+            parkingLots.get(RESERVED_LOT_FOR_HANDICAP).put(spotForHandicap.getKey(), parkedVehicle);
+        if (parkedVehicle1 != null)
+            this.parkVehicle(parkedVehicle1);
         return true;
     }
 
-    private int getEmptySpot(int parkingLot, int... spotNo) {
-        if (spotNo.length != 0 && parkingLots.get(spotNo[0]).get(spotNo[1]) == null) {
-            return spotNo[1];
-        }
+    private int getEmptySpot(int parkingLot) {
         Integer key = parkingLots.get(parkingLot)
                 .entrySet().stream()
                 .filter(spotNumber -> spotNumber.getValue() == null)
@@ -94,10 +93,7 @@ public class ParkingLotSystem {
         return key;
     }
 
-    private int getEmptyParkingLot(int[] lotNo) {
-        if (lotNo.length != 0 && parkingLots.get(lotNo[0]).get(lotNo[1]) == null) {
-            return lotNo[0];
-        }
+    private int getEmptyParkingLot() {
         int lotNumber = parkingLots.entrySet()
                 .stream()
                 .sorted(Comparator.comparing(lots -> lots.getValue()
@@ -122,23 +118,21 @@ public class ParkingLotSystem {
         return null;
     }
 
-    public int findCarParkedBySlotNumber(ParkedVehicle parkedVehicle1) {
-        return parkedVehicle1.lotNo;
-    }
-
     private boolean isParkingSlotEmpty() throws ParkingLotException {
         if (parkingLots.entrySet().stream()
-                .filter(integerArrayListEntry -> integerArrayListEntry.getValue().containsValue(null))
-                .count() > 0)
+                .filter(parkingSlot -> parkingSlot.getValue().containsValue(null))
+                .count() > 0) {
             this.parkingStatus = false;
-        else
-            this.parkingStatus = true;
-        observersHandler.notifyObservers(parkingStatus);
+            parkingStatusObserver.notifyObservers(parkingStatus);
+            return !parkingStatus;
+        }
+        this.parkingStatus = true;
+        parkingStatusObserver.notifyObservers(parkingStatus);
         return !parkingStatus;
     }
 
     public List<ParkedVehicle> getCarDetails(String... carDetails) {
-        List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<ParkedVehicle>();
+        List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<>();
         parkingLots.entrySet()
                 .stream()
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()

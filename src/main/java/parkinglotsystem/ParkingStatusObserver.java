@@ -2,7 +2,7 @@ package parkinglotsystem;
 
 import java.util.ArrayList;
 
-public class ObserversHandler {
+public class ParkingStatusObserver {
     private ArrayList<ParkingLotObserver> observers = new ArrayList<ParkingLotObserver>();
 
     public void registerObserver(ParkingLotObserver observer) {

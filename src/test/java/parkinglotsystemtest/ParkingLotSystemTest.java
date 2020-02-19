@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import parkinglotsystem.*;
+import parkinglotsystem.enumerate.Driver;
+import parkinglotsystem.exception.ParkingLotException;
+import parkinglotsystem.AirportSecurity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,7 +18,7 @@ public class ParkingLotSystemTest {
 
     @Before
     public void setUp() throws Exception {
-        parkedVehicle = new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL);
+        parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER);
         parkingLotSystem = new ParkingLotSystem(2, 1);
     }
 
@@ -38,49 +41,37 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenVehicle_whenParkingLotIsEmpty_shouldInformOwner() throws ParkingLotException {
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         Assert.assertFalse(ParkingLotOwner.isParkingStatus());
     }
 
     @Test
     public void givenVehicle_whenParkingLotIsFull_shouldInformOwner() throws ParkingLotException {
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         Assert.assertTrue(ParkingLotOwner.isParkingStatus());
     }
 
     @Test
     public void givenVehicle_whenParkingLotIsFull_shouldInformAirportSecurity() throws ParkingLotException {
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         Assert.assertTrue(AirportSecurity.securityStatus);
     }
 
     @Test
     public void givenVehicle_whenParkingLotIsEmpty_shouldInformAirportSecurity() throws ParkingLotException {
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         Assert.assertFalse(AirportSecurity.securityStatus);
     }
 
     @Test
     public void givenVehicle_whenCarIsUnparked_shouldChangeTheStatusOfParkingLotToEmpty() {
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         parkingLotSystem.parkVehicle(parkedVehicle);
         Assert.assertTrue(ParkingLotOwner.isParkingStatus());
         parkingLotSystem.unparkCar(parkedVehicle);
         Assert.assertFalse(ParkingLotOwner.isParkingStatus());
-    }
-
-    @Test
-    public void givenVehicle_whenGivenPerticularLotNo_shouldAbleToPark() throws ParkingLotException {
-        Assert.assertTrue(parkingLotSystem.parkVehicle(parkedVehicle, 1, 2));
-    }
-
-    @Test
-    public void givenVehicle_whenCarIsPark_shouldAbleToFindVehicle() throws ParkingLotException {
-        parkingLotSystem.parkVehicle(parkedVehicle, 1, 2);
-        int carParkedLotNumber = parkingLotSystem.findCarParkedBySlotNumber(parkedVehicle);
-        Assert.assertEquals(1, carParkedLotNumber);
     }
 
     @Test
@@ -94,12 +85,12 @@ public class ParkingLotSystemTest {
     @Test
     public void givenVehicles_whenLotIsEmpty_shouldAbleToParkEvenly() throws ParkingLotException {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem(20, 5);
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         parkingLotSystem.parkVehicle(parkedVehicle);
         Assert.assertEquals(2, parkedVehicle.spotNo);
     }
@@ -107,36 +98,38 @@ public class ParkingLotSystemTest {
     @Test
     public void givenVehicle_whenDriverIsHandicap_shouldParkedAtNearestSpot() throws ParkingLotException {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem(4, 2);
-        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.NORMAL_DRIVER, VehicleSize.SMALL));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         parkingLotSystem.parkVehicle(parkedVehicle);
-        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.HANDICAP, VehicleSize.SMALL);
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.HANDICAP_DRIVER);
         parkingLotSystem.parkVehicle(parkedVehicle1);
         Assert.assertEquals(1, parkedVehicle1.spotNo);
     }
 
     @Test
     public void givenLargeVehicleToPark_shouldAbleToPark() {
-        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.HANDICAP, VehicleSize.LARGE);
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.HANDICAP_DRIVER);
         Assert.assertTrue(parkingLotSystem.parkVehicle(parkedVehicle));
     }
 
     @Test
     public void givenVehicle_whenWhiteVehiclesAreParked_shouldReturnThatVehicles() {
-        ParkedVehicle parkedVehicle = new ParkedVehicle("White");
-        ParkedVehicle parkedVehicle1 = new ParkedVehicle("Green");
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"White");
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Green");
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
         List<ParkedVehicle> white = parkingLotSystem.getCarDetails("White");
-        Assert.assertEquals(white.get(0),parkedVehicle);
+        Assert.assertEquals(white.get(0), parkedVehicle);
     }
 
     @Test
     public void givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles() {
-        ParkedVehicle parkedVehicle = new ParkedVehicle("Blue","BMW");
-        ParkedVehicle parkedVehicle1 = new ParkedVehicle("Blue","Toyota");
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
+        parkedVehicle.carManufacturer = "Maruti";
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
+        parkedVehicle1.carManufacturer = "Toyota";
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> white = parkingLotSystem.getCarDetails("Blue","Toyota");
-        Assert.assertEquals(white.get(0),parkedVehicle1);
+        List<ParkedVehicle> white = parkingLotSystem.getCarDetails("Blue", "Toyota");
+        Assert.assertEquals(white.get(0), parkedVehicle1);
     }
 }
