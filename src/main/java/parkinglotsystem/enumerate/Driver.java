@@ -12,7 +12,7 @@ public enum Driver {
     }, LARGE_VEHICLE_DRIVER{
         @Override
         public boolean getVehicleParked(ParkedVehicle vehicle, ParkingLotSystem parkingLotSystem) {
-            return parkingLotSystem.getSpotForLargeVehicleDriver(vehicle);
+            return parkingLotSystem.getSpotForLargeVehicle(vehicle);
         }
     }, HANDICAP_DRIVER{
         @Override

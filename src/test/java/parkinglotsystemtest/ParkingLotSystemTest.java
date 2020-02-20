@@ -62,6 +62,28 @@ public class ParkingLotSystemTest {
     }
 
     @Test
+    public void givenVehicle_whenVehicleIsAlreadyParked_shouldThrowException() throws ParkingLotException {
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER);
+        try {
+        parkingLotSystem.parkVehicle(parkedVehicle);
+        parkingLotSystem.parkVehicle(parkedVehicle);
+        } catch (ParkingLotException e) {
+            Assert.assertEquals("Vehicle already parked",e.getMessage());
+        }
+    }
+
+    @Test
+    public void givenVehicle_whenLotIsFull_shouldThrowException() throws ParkingLotException {
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        try {
+            parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        } catch (ParkingLotException e) {
+            Assert.assertEquals("Parking lot is full",e.getMessage());
+        }
+    }
+
+    @Test
     public void givenVehicle_whenParkingLotIsEmpty_shouldInformAirportSecurity() throws ParkingLotException {
         parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         Assert.assertFalse(AirportSecurity.securityStatus);
