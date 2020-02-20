@@ -1,9 +1,8 @@
-package parkinglotsystemtest;
+package parkinglotsystem;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import parkinglotsystem.*;
 import parkinglotsystem.enumerate.Driver;
 import parkinglotsystem.enumerate.VehicleDetails;
 import parkinglotsystem.exception.ParkingLotException;
@@ -66,10 +65,10 @@ public class ParkingLotSystemTest {
     public void givenVehicle_whenVehicleIsAlreadyParked_shouldThrowException() throws ParkingLotException {
         ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER);
         try {
-        parkingLotSystem.parkVehicle(parkedVehicle);
-        parkingLotSystem.parkVehicle(parkedVehicle);
+            parkingLotSystem.parkVehicle(parkedVehicle);
+            parkingLotSystem.parkVehicle(parkedVehicle);
         } catch (ParkingLotException e) {
-            Assert.assertEquals("Vehicle already parked",e.getMessage());
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED, e.type);
         }
     }
 
@@ -80,7 +79,7 @@ public class ParkingLotSystemTest {
         try {
             parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
         } catch (ParkingLotException e) {
-            Assert.assertEquals("Parking lot is full",e.getMessage());
+            Assert.assertEquals(ParkingLotException.ExceptionType.LOT_FULL, e.type);
         }
     }
 
@@ -131,7 +130,7 @@ public class ParkingLotSystemTest {
     }
 
     @Test
-    public void givenLargeVehicleToPark_shouldAbleToPark() {
+    public void givenVehicle_whenItisLarge_shouldAbleToPark() {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem(10, 1);
         ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.LARGE_VEHICLE_DRIVER);
         parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
@@ -145,36 +144,55 @@ public class ParkingLotSystemTest {
 
     @Test
     public void givenVehicle_whenWhiteVehiclesAreParked_shouldReturnThatVehicles() {
-        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"White");
-        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Green");
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "White");
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Green");
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> white = parkingLotSystem.getCarDetails(VehicleDetails.WHITE);
-        Assert.assertEquals(white.get(0), parkedVehicle);
+        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarDetails(VehicleDetails.WHITE);
+        Assert.assertEquals(vehicleList.get(0), parkedVehicle);
     }
 
     @Test
     public void givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles() {
-        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Blue");
         parkedVehicle.carManufacturer = "Maruti";
-        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
-        parkedVehicle1.carManufacturer = "Toyota";
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Blue");
+        parkedVehicle1.carManufacturer = "Toyoto";
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> white = parkingLotSystem.getCarDetails(VehicleDetails.BMW, VehicleDetails.TOYOTO);
-        Assert.assertEquals(white.get(0), parkedVehicle1);
+        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarDetails(VehicleDetails.TOYOTO, VehicleDetails.BLUE);
+        Assert.assertEquals(vehicleList.get(0), parkedVehicle1);
     }
 
     @Test
     public void givenVehicle_whenItIsBMW_shouldReturnThatVehicles() {
-        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Blue");
         parkedVehicle.carManufacturer = "BMW";
-        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
+        ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Blue");
         parkedVehicle1.carManufacturer = "Toyota";
         System.out.println(Driver.HANDICAP_DRIVER.name());
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> white = parkingLotSystem.getCarDetails(VehicleDetails.BMW);
-        Assert.assertEquals(white.get(0), parkedVehicle);
+        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarDetails(VehicleDetails.BMW);
+        Assert.assertEquals(vehicleList.get(0), parkedVehicle);
+    }
+
+    @Test
+    public void givenVehicles_whenItIsNotBMW_shouldThrowException() {
+        ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Blue");
+        parkedVehicle.carManufacturer = "Toyoto";
+        try {
+            parkingLotSystem.getCarDetails(VehicleDetails.BMW);
+        } catch (ParkingLotException p) {
+            Assert.assertEquals(ParkingLotException.ExceptionType.NO_SUCH_VEHICLE, p.type);
+        }
+    }
+
+    @Test
+    public void givenVehicles_whenItIsParkedWithin30Min_shouldReturnThatVehicle() {
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        List<ParkedVehicle> vehicleList = parkingLotSystem.getVehicleByTime(30);
+        System.out.println(vehicleList.size());
     }
 }
