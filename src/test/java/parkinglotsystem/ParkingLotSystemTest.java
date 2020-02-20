@@ -195,4 +195,20 @@ public class ParkingLotSystemTest {
         List<ParkedVehicle> vehicleList = parkingLotSystem.getVehicleByTime(30);
         System.out.println(vehicleList.size());
     }
+
+    @Test
+    public void givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt() {
+        ParkingLotSystem parkingLotSystem = new ParkingLotSystem(8, 4);
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.HANDICAP_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.HANDICAP_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.HANDICAP_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.HANDICAP_DRIVER));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER));
+        List<ParkedVehicle> allParkedVehicle = parkingLotSystem.getHandicapCarInLot(2);
+        System.out.println(allParkedVehicle.toString());
+
+    }
 }

@@ -18,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/ParkingLotSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/ParkingLotSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +94,7 @@
       <recent name="parking_lot_system" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ParkingLotSystemTest">
+  <component name="RunManager" selected="Gradle.ParkingLotSystemTest.givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt">
     <configuration name="ParkingLotSystemTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -154,6 +155,26 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="ParkingLotSystemTest.givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;parkinglotsystem.ParkingLotSystemTest.givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="ParkingLotSystemTest.givenVehicles_whenItIsNotBMW_shouldThrowException" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -174,33 +195,13 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ParkingLotSystemTest.givenVehicles_whenItIsParkedIn30Min_shouldReturnThatVehicle" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;parkinglotsystem.ParkingLotSystemTest.givenVehicles_whenItIsParkedIn30Min_shouldReturnThatVehicle&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt" />
         <item itemvalue="Gradle.ParkingLotSystemTest" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicle_whenItIsBMW_shouldReturnThatVehicles" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenItIsNotBMW_shouldThrowException" />
-        <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenItIsParkedIn30Min_shouldReturnThatVehicle" />
       </list>
     </recent_temporary>
   </component>
@@ -271,33 +272,33 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1582114018772" />
-    <state width="1253" height="32" key="GridCell.Tab.0.bottom" timestamp="1582193245311">
+    <state width="1253" height="86" key="GridCell.Tab.0.bottom" timestamp="1582204733414">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581859207720" />
     <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1581843705015" />
-    <state width="1253" height="32" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582193245311" />
+    <state width="1253" height="86" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582204733414" />
     <state width="1250" height="40" key="GridCell.Tab.0.bottom/70.27.1296.741@70.27.1296.741" timestamp="1581422656218" />
-    <state width="1253" height="32" key="GridCell.Tab.0.center" timestamp="1582193245311">
+    <state width="1253" height="86" key="GridCell.Tab.0.center" timestamp="1582204733414">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581859207718" />
     <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1581843705011" />
-    <state width="1253" height="32" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1582193245311" />
+    <state width="1253" height="86" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1582204733414" />
     <state width="1250" height="40" key="GridCell.Tab.0.center/70.27.1296.741@70.27.1296.741" timestamp="1581422656217" />
-    <state width="1253" height="32" key="GridCell.Tab.0.left" timestamp="1582193245311">
+    <state width="1253" height="86" key="GridCell.Tab.0.left" timestamp="1582204733413">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581859207717" />
     <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1581843705010" />
-    <state width="1253" height="32" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1582193245311" />
+    <state width="1253" height="86" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1582204733413" />
     <state width="1250" height="40" key="GridCell.Tab.0.left/70.27.1296.741@70.27.1296.741" timestamp="1581422656216" />
-    <state width="1253" height="32" key="GridCell.Tab.0.right" timestamp="1582193245311">
+    <state width="1253" height="86" key="GridCell.Tab.0.right" timestamp="1582204733414">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581859207719" />
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1581843705013" />
-    <state width="1253" height="32" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1582193245311" />
+    <state width="1253" height="86" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1582204733414" />
     <state width="1250" height="40" key="GridCell.Tab.0.right/70.27.1296.741@70.27.1296.741" timestamp="1581422656217" />
     <state width="1253" height="237" key="GridCell.Tab.1.bottom" timestamp="1581772414812">
       <screen x="67" y="27" width="1299" height="741" />
@@ -345,10 +346,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="431" y="199" width="524" height="491" key="extract.method.dialog/67.27.1299.741@67.27.1299.741" timestamp="1582114695047" />
-    <state x="557" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog" timestamp="1582096775037">
+    <state x="557" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog" timestamp="1582200705568">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="557" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog/67.27.1299.741@67.27.1299.741" timestamp="1582096775037" />
+    <state x="557" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog/67.27.1299.741@67.27.1299.741" timestamp="1582200705568" />
     <state x="463" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog/70.27.1296.741@70.27.1296.741" timestamp="1581315767249" />
     <state x="382" y="174" key="run.anything.popup" timestamp="1581416119249">
       <screen x="70" y="27" width="1296" height="741" />

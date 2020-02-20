@@ -59,9 +59,9 @@ public class ParkingLotSystem {
             int spotNumber = this.getEmptySpot(parkingLot);
             parkedVehicle.lotNo = parkingLot;
             parkedVehicle.spotNo = spotNumber;
+            parkedVehicle.setParkedTime(LocalDateTime.now());
         }
         parkedVehicle.attendantName = parkingAttendant;
-        parkedVehicle.setParkedTime(LocalDateTime.now());
         parkingLots.get(parkedVehicle.lotNo).put(parkedVehicle.spotNo, parkedVehicle);
         isParkingSlotEmpty();
         return true;
@@ -77,6 +77,7 @@ public class ParkingLotSystem {
 
         ParkedVehicle parkedVehicle1 = spotForHandicap.getValue();
         parkedVehicle.spotNo = spotForHandicap.getKey();
+        parkedVehicle.parkedTime = LocalDateTime.now();
         parkingLots.get(parkedVehicle.lotNo).put(spotForHandicap.getKey(), parkedVehicle);
         if (parkedVehicle1 != null)
             this.parkVehicle(parkedVehicle1);
@@ -164,10 +165,18 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public List<ParkedVehicle> getAllParkedVehicle() {
+    public List<ParkedVehicle> getAllParkedVehicle(int... lotNumbers) {
         List<ParkedVehicle> allParkedVehicle = new ArrayList<>();
         parkingLots.entrySet()
-                .stream()
+                .stream().filter(parkingLot -> {
+            if (lotNumbers.length == 0) {
+                return true;
+            } else {
+                if (parkingLot.getKey() % lotNumbers[0] == 0)
+                    return true;
+            }
+            return false;
+        })
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
                         .forEach(sortByDetails -> allParkedVehicle.add(sortByDetails.getValue())));
@@ -181,6 +190,15 @@ public class ParkingLotSystem {
                 .filter(parkingSlot -> getFilteredByCarDetails(parkingSlot, vehicleDetails)).
                 forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails));
         return checkParkedVehicleList(sortedVehicleByDetails);
+    }
+
+    public List<ParkedVehicle> getHandicapCarInLot(int... rowNo) {
+        List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<>();
+        List<ParkedVehicle> allParkedVehicle = getAllParkedVehicle(rowNo[0]);
+        allParkedVehicle.stream()
+                .filter(parkingSlot -> parkingSlot.driver.toString().contains("HANDICAP_DRIVER")).
+                forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails));
+        return sortedVehicleByDetails;
     }
 
     private boolean getFilteredByCarDetails(ParkedVehicle parkedVehicle, VehicleDetails[] carDetails) {
