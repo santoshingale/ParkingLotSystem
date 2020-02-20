@@ -1,5 +1,6 @@
 package parkinglotsystem;
 
+import parkinglotsystem.enumerate.VehicleDetails;
 import parkinglotsystem.enumerate.Driver;
 import parkinglotsystem.exception.ParkingLotException;
 import parkinglotsystem.services.AirportSecurity;
@@ -41,16 +42,6 @@ public class ParkingLotSystem {
         TreeMap<Integer, ParkedVehicle> parkingSpots = new TreeMap<>();
         IntStream.range(1, parkingRowCapacity + 1).forEach(i -> parkingSpots.put(i, null));
         return parkingSpots;
-    }
-
-    public boolean isVehicleParked(ParkedVehicle parkedVehicle) {
-        if (parkingLots.entrySet()
-                .stream()
-                .filter(parkingLot -> parkingLot.getValue().containsValue(parkedVehicle))
-                .count() > 0) {
-            return true;
-        }
-        return false;
     }
 
     public boolean parkVehicle(ParkedVehicle parkedVehicle) {
@@ -117,7 +108,6 @@ public class ParkingLotSystem {
         return true;
     }
 
-
     private int getEmptySpot(int parkingLot) {
         return parkingLots.get(parkingLot)
                 .entrySet().stream()
@@ -164,22 +154,32 @@ public class ParkingLotSystem {
         return !parkingStatus;
     }
 
-    public List<ParkedVehicle> getCarDetails(String... carDetails) {
+    public boolean isVehicleParked(ParkedVehicle parkedVehicle) {
+        if (parkingLots.entrySet()
+                .stream()
+                .filter(parkingLot -> parkingLot.getValue().containsValue(parkedVehicle))
+                .count() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public List<ParkedVehicle> getCarDetails(VehicleDetails... vehicleDetails) {
         List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<>();
 
         parkingLots.entrySet()
                 .stream()
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
-                        .filter(parkedVehicle -> getFilteredByCarDetails(parkedVehicle, carDetails))
+                        .filter(parkedVehicle -> getFilteredByCarDetails(parkedVehicle, vehicleDetails))
                         .forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails.getValue())
                         ));
         return sortedVehicleByDetails;
     }
 
-    private boolean getFilteredByCarDetails(Map.Entry<Integer, ParkedVehicle> parkedVehicle, String[] carDetails) {
+    private boolean getFilteredByCarDetails(Map.Entry<Integer, ParkedVehicle> parkedVehicle, VehicleDetails[] carDetails) {
         for (int i = 0; i < carDetails.length; i++)
-            if (!parkedVehicle.getValue().toString().contains(carDetails[i]))
+            if (!parkedVehicle.getValue().toString().toLowerCase().contains(carDetails[i].toString().toLowerCase()))
                 return false;
         return true;
     }

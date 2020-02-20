@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import parkinglotsystem.*;
 import parkinglotsystem.enumerate.Driver;
+import parkinglotsystem.enumerate.VehicleDetails;
 import parkinglotsystem.exception.ParkingLotException;
 import parkinglotsystem.services.AirportSecurity;
 import parkinglotsystem.services.ParkedVehicle;
@@ -148,7 +149,7 @@ public class ParkingLotSystemTest {
         ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Green");
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> white = parkingLotSystem.getCarDetails("White");
+        List<ParkedVehicle> white = parkingLotSystem.getCarDetails(VehicleDetails.WHITE);
         Assert.assertEquals(white.get(0), parkedVehicle);
     }
 
@@ -160,7 +161,7 @@ public class ParkingLotSystemTest {
         parkedVehicle1.carManufacturer = "Toyota";
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> white = parkingLotSystem.getCarDetails("Blue", "Toyota");
+        List<ParkedVehicle> white = parkingLotSystem.getCarDetails(VehicleDetails.BMW, VehicleDetails.TOYOTO);
         Assert.assertEquals(white.get(0), parkedVehicle1);
     }
 
@@ -170,9 +171,10 @@ public class ParkingLotSystemTest {
         parkedVehicle.carManufacturer = "BMW";
         ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER,"Blue");
         parkedVehicle1.carManufacturer = "Toyota";
+        System.out.println(Driver.HANDICAP_DRIVER.name());
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> white = parkingLotSystem.getCarDetails("BMW");
+        List<ParkedVehicle> white = parkingLotSystem.getCarDetails(VehicleDetails.BMW);
         Assert.assertEquals(white.get(0), parkedVehicle);
     }
 }
