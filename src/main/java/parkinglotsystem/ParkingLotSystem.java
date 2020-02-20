@@ -164,39 +164,44 @@ public class ParkingLotSystem {
         return false;
     }
 
-    public List<ParkedVehicle> getCarDetails(VehicleDetails... vehicleDetails) {
-        List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<>();
-
+    public List<ParkedVehicle> getAllParkedVehicle() {
+        List<ParkedVehicle> allParkedVehicle = new ArrayList<>();
         parkingLots.entrySet()
                 .stream()
-                .forEach(parkinLot -> parkinLot.getValue().entrySet().stream()
+                .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
-                        .filter(parkingSlot -> getFilteredByCarDetails(parkingSlot, vehicleDetails))
-                        .forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails.getValue())
-                        ));
-        if (sortedVehicleByDetails.size() > 0)
-            return sortedVehicleByDetails;
-        throw new ParkingLotException("No such vehicle in lot", ParkingLotException.ExceptionType.NO_SUCH_VEHICLE);
+                        .forEach(sortByDetails -> allParkedVehicle.add(sortByDetails.getValue())));
+        return checkParkedVehicleList(allParkedVehicle);
     }
 
-    private boolean getFilteredByCarDetails(Map.Entry<Integer, ParkedVehicle> parkedVehicle, VehicleDetails[] carDetails) {
+    public List<ParkedVehicle> getCarByDetails(VehicleDetails... vehicleDetails) {
+        List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<>();
+        List<ParkedVehicle> allParkedVehicle = getAllParkedVehicle();
+        allParkedVehicle.stream()
+                .filter(parkingSlot -> getFilteredByCarDetails(parkingSlot, vehicleDetails)).
+                forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails));
+        return checkParkedVehicleList(sortedVehicleByDetails);
+    }
+
+    private boolean getFilteredByCarDetails(ParkedVehicle parkedVehicle, VehicleDetails[] carDetails) {
         for (int i = 0; i < carDetails.length; i++)
-            if (!parkedVehicle.getValue().toString().toLowerCase().contains(carDetails[i].toString().toLowerCase()))
+            if (!parkedVehicle.toString().toLowerCase().contains(carDetails[i].toString().toLowerCase()))
                 return false;
         return true;
     }
 
     public List<ParkedVehicle> getVehicleByTime(int time) {
         List<ParkedVehicle> sortedVehicleByTime = new ArrayList<>();
-        parkingLots.entrySet()
-                .stream()
-                .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
-                        .filter(slotNumber -> slotNumber.getValue() != null)
-                        .filter(parkedVehicle -> parkedVehicle.getValue().parkedTime.isAfter(LocalDateTime.now().minusMinutes(time)))
-                        .forEach(sortByDetails -> sortedVehicleByTime.add(sortByDetails.getValue())
-                        ));
-        if (sortedVehicleByTime.size() > 0)
-            return sortedVehicleByTime;
+        List<ParkedVehicle> allParkedVehicle = getAllParkedVehicle();
+        allParkedVehicle.stream()
+                .filter(parkedVehicle -> parkedVehicle.parkedTime.isAfter(LocalDateTime.now().minusMinutes(time)))
+                .forEach(sortByDetails -> sortedVehicleByTime.add(sortByDetails));
+        return checkParkedVehicleList(sortedVehicleByTime);
+    }
+
+    private List<ParkedVehicle> checkParkedVehicleList(List<ParkedVehicle> parkedVehicleList) {
+        if (parkedVehicleList.size() > 0)
+            return parkedVehicleList;
         throw new ParkingLotException("No such vehicle in lot", ParkingLotException.ExceptionType.NO_SUCH_VEHICLE);
     }
 }

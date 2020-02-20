@@ -148,7 +148,7 @@ public class ParkingLotSystemTest {
         ParkedVehicle parkedVehicle1 = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Green");
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarDetails(VehicleDetails.WHITE);
+        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarByDetails(VehicleDetails.WHITE);
         Assert.assertEquals(vehicleList.get(0), parkedVehicle);
     }
 
@@ -160,7 +160,7 @@ public class ParkingLotSystemTest {
         parkedVehicle1.carManufacturer = "Toyoto";
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarDetails(VehicleDetails.TOYOTO, VehicleDetails.BLUE);
+        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarByDetails(VehicleDetails.TOYOTO, VehicleDetails.BLUE);
         Assert.assertEquals(vehicleList.get(0), parkedVehicle1);
     }
 
@@ -173,7 +173,7 @@ public class ParkingLotSystemTest {
         System.out.println(Driver.HANDICAP_DRIVER.name());
         parkingLotSystem.parkVehicle(parkedVehicle);
         parkingLotSystem.parkVehicle(parkedVehicle1);
-        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarDetails(VehicleDetails.BMW);
+        List<ParkedVehicle> vehicleList = parkingLotSystem.getCarByDetails(VehicleDetails.BMW);
         Assert.assertEquals(vehicleList.get(0), parkedVehicle);
     }
 
@@ -182,7 +182,7 @@ public class ParkingLotSystemTest {
         ParkedVehicle parkedVehicle = new ParkedVehicle(Driver.SMALL_VEHICLE_DRIVER, "Blue");
         parkedVehicle.carManufacturer = "Toyoto";
         try {
-            parkingLotSystem.getCarDetails(VehicleDetails.BMW);
+            parkingLotSystem.getCarByDetails(VehicleDetails.BMW);
         } catch (ParkingLotException p) {
             Assert.assertEquals(ParkingLotException.ExceptionType.NO_SUCH_VEHICLE, p.type);
         }
