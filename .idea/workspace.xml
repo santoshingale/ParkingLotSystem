@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bed055b4-875f-4de7-bf61-ced3be919a0f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/ParkingLotSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/ParkingLotSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/DriverType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/services/ParkedVehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/services/ParkedVehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/exception/ParkingLotException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/exception/ParkingLotException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/services/ParkingStatusObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/services/ParkingStatusObserver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +80,7 @@
       <recent name="parking_lot_system" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ParkingLotSystemTest.givenVehicles_whenThatAreParked_shouldReturnIt">
+  <component name="RunManager" selected="Gradle.ParkingLotSystemTest">
     <configuration name="ParkingLotSystemTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -184,10 +183,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ParkingLotSystemTest" />
+        <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenThatAreParked_shouldReturnIt" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenItIsParkedWithin30Min_shouldReturnThatVehicle" />
-        <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt" />
-        <item itemvalue="Gradle.ParkingLotSystemTest" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles" />
       </list>
     </recent_temporary>
@@ -259,33 +258,33 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1582114018772" />
-    <state width="1253" height="446" key="GridCell.Tab.0.bottom" timestamp="1582259148959">
+    <state width="1253" height="439" key="GridCell.Tab.0.bottom" timestamp="1582260731967">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581859207720" />
     <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1581843705015" />
-    <state width="1253" height="446" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582259148959" />
+    <state width="1253" height="439" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582260731967" />
     <state width="1250" height="40" key="GridCell.Tab.0.bottom/70.27.1296.741@70.27.1296.741" timestamp="1581422656218" />
-    <state width="1253" height="446" key="GridCell.Tab.0.center" timestamp="1582259148959">
+    <state width="1253" height="439" key="GridCell.Tab.0.center" timestamp="1582260731966">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581859207718" />
     <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1581843705011" />
-    <state width="1253" height="446" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1582259148959" />
+    <state width="1253" height="439" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1582260731966" />
     <state width="1250" height="40" key="GridCell.Tab.0.center/70.27.1296.741@70.27.1296.741" timestamp="1581422656217" />
-    <state width="1253" height="446" key="GridCell.Tab.0.left" timestamp="1582259148959">
+    <state width="1253" height="439" key="GridCell.Tab.0.left" timestamp="1582260731966">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581859207717" />
     <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1581843705010" />
-    <state width="1253" height="446" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1582259148959" />
+    <state width="1253" height="439" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1582260731966" />
     <state width="1250" height="40" key="GridCell.Tab.0.left/70.27.1296.741@70.27.1296.741" timestamp="1581422656216" />
-    <state width="1253" height="446" key="GridCell.Tab.0.right" timestamp="1582259148959">
+    <state width="1253" height="439" key="GridCell.Tab.0.right" timestamp="1582260731967">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581859207719" />
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1581843705013" />
-    <state width="1253" height="446" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1582259148959" />
+    <state width="1253" height="439" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1582260731967" />
     <state width="1250" height="40" key="GridCell.Tab.0.right/70.27.1296.741@70.27.1296.741" timestamp="1581422656217" />
     <state width="1253" height="198" key="GridCell.Tab.1.bottom" timestamp="1582258613320">
       <screen x="67" y="27" width="1299" height="741" />
@@ -329,10 +328,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="337" y="61" width="748" height="670" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.1299.741@67.27.1299.741" timestamp="1582089536203" />
-    <state x="431" y="199" width="524" height="491" key="extract.method.dialog" timestamp="1582114695047">
+    <state x="431" y="199" width="524" height="491" key="extract.method.dialog" timestamp="1582260661688">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="431" y="199" width="524" height="491" key="extract.method.dialog/67.27.1299.741@67.27.1299.741" timestamp="1582114695047" />
+    <state x="431" y="199" width="524" height="491" key="extract.method.dialog/67.27.1299.741@67.27.1299.741" timestamp="1582260661688" />
     <state x="557" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog" timestamp="1582200705568">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -359,12 +358,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java</url>
-          <line>225</line>
+          <line>223</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java</url>
-          <line>226</line>
+          <line>224</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

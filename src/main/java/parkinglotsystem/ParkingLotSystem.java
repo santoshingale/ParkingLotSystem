@@ -68,7 +68,6 @@ public class ParkingLotSystem {
     }
 
     public boolean getSpotForHandicapDriver(ParkedVehicle vehicle) {
-        System.out.println();
         vehicle.lotNo = this.getParkingLot();
         Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(vehicle.lotNo)
                 .entrySet()
@@ -146,7 +145,6 @@ public class ParkingLotSystem {
     }
 
     private boolean isParkingSlotEmpty() {
-        System.out.println(parkingLots.toString());
         if (parkingLots.entrySet().stream()
                 .filter(parkingSlot -> parkingSlot.getValue().containsValue(null))
                 .count() > 0) {
@@ -175,10 +173,8 @@ public class ParkingLotSystem {
                 .stream().filter(parkingLot -> getFilterByLotNumber(parkingLot, lotNumbers))
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
-                        .forEach(sortByDetails -> {
-                            System.out.println(sortByDetails.getValue());
-                            allParkedVehicle.add(sortByDetails.getValue());
-                        }));
+                        .forEach(sortByDetails ->
+                            allParkedVehicle.add(sortByDetails.getValue())));
         return checkParkedVehicleList(allParkedVehicle);
     }
 
