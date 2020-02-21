@@ -8,7 +8,7 @@ import parkinglotsystem.enumerate.VehicleDetails;
 import parkinglotsystem.enumerate.VehicleSize;
 import parkinglotsystem.exception.ParkingLotException;
 import parkinglotsystem.services.AirportSecurity;
-import parkinglotsystem.services.ParkedVehicle;
+import parkinglotsystem.model.ParkedVehicle;
 import parkinglotsystem.services.ParkingLotOwner;
 
 import java.time.LocalDateTime;

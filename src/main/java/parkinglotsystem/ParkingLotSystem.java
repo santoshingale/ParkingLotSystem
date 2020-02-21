@@ -4,7 +4,7 @@ import parkinglotsystem.enumerate.DriverType;
 import parkinglotsystem.enumerate.VehicleDetails;
 import parkinglotsystem.exception.ParkingLotException;
 import parkinglotsystem.services.AirportSecurity;
-import parkinglotsystem.services.ParkedVehicle;
+import parkinglotsystem.model.ParkedVehicle;
 import parkinglotsystem.services.ParkingLotOwner;
 import parkinglotsystem.services.ParkingStatusObserver;
 

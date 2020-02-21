@@ -2,6 +2,7 @@ package parkinglotsystem.services;
 
 import parkinglotsystem.ParkingLotSystem;
 import parkinglotsystem.enumerate.VehicleSize;
+import parkinglotsystem.model.ParkedVehicle;
 
 public class DriverFactory {
     public static boolean getVehicleParkBySize(ParkedVehicle vehicle, ParkingLotSystem parkingLotSystem) {

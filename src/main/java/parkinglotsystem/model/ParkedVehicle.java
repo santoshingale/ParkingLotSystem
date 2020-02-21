@@ -1,4 +1,4 @@
-package parkinglotsystem.services;
+package parkinglotsystem.model;
 
 import parkinglotsystem.enumerate.DriverType;
 import parkinglotsystem.enumerate.VehicleSize;

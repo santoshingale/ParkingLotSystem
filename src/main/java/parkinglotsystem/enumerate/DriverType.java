@@ -1,7 +1,7 @@
 package parkinglotsystem.enumerate;
 
 import parkinglotsystem.services.DriverFactory;
-import parkinglotsystem.services.ParkedVehicle;
+import parkinglotsystem.model.ParkedVehicle;
 import parkinglotsystem.ParkingLotSystem;
 
 public enum DriverType {
