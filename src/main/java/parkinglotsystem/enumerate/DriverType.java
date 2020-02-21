@@ -4,7 +4,7 @@ import parkinglotsystem.services.DriverFactory;
 import parkinglotsystem.services.ParkedVehicle;
 import parkinglotsystem.ParkingLotSystem;
 
-public enum Driver {
+public enum DriverType {
     NORMAL_DRIVER {
         @Override
         public boolean getVehicleParked(ParkedVehicle vehicle, ParkingLotSystem parkingLotSystem) {

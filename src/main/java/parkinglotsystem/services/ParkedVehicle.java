@@ -1,6 +1,6 @@
 package parkinglotsystem.services;
 
-import parkinglotsystem.enumerate.Driver;
+import parkinglotsystem.enumerate.DriverType;
 import parkinglotsystem.enumerate.VehicleSize;
 
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ public class ParkedVehicle {
     public int lotNo;
     public int spotNo;
     public LocalDateTime parkedTime;
-    public Driver driver;
+    public DriverType driverType;
     public String carColor;
     public String plateNumber;
     public String carManufacturer;
@@ -19,13 +19,13 @@ public class ParkedVehicle {
     public VehicleSize vehicleSize;
 
 
-    public ParkedVehicle(Driver driver, VehicleSize vehicleSize) {
-        this.driver = driver;
+    public ParkedVehicle(DriverType driverType, VehicleSize vehicleSize) {
+        this.driverType = driverType;
         this.vehicleSize = vehicleSize;
     }
 
-    public ParkedVehicle(Driver driver,VehicleSize vehicleSize, String carColor) {
-        this.driver = driver;
+    public ParkedVehicle(DriverType driverType, VehicleSize vehicleSize, String carColor) {
+        this.driverType = driverType;
         this.carColor = carColor;
         this.vehicleSize = vehicleSize;
     }
@@ -40,7 +40,7 @@ public class ParkedVehicle {
                 "lotNo=" + lotNo +
                 ", spotNo=" + spotNo +
                 ", parkedTime=" + parkedTime +
-                ", driver=" + driver +
+                ", driver=" + driverType +
                 ", carColor='" + carColor + '\'' +
                 ", plateNumber='" + plateNumber + '\'' +
                 ", carManufacturer='" + carManufacturer + '\'' +

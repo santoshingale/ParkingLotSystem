@@ -1,7 +1,7 @@
 package parkinglotsystem;
 
 import parkinglotsystem.enumerate.VehicleDetails;
-import parkinglotsystem.enumerate.Driver;
+import parkinglotsystem.enumerate.DriverType;
 import parkinglotsystem.exception.ParkingLotException;
 import parkinglotsystem.services.AirportSecurity;
 import parkinglotsystem.services.ParkedVehicle;
@@ -27,9 +27,9 @@ public class ParkingLotSystem {
     private Map<Integer, TreeMap<Integer, ParkedVehicle>> parkingLots = new TreeMap<>();
     private boolean parkingStatus;
 
-    public ParkingLotSystem(int capacity, int numberoflots) {
+    public ParkingLotSystem(int capacity, int numberOfLots) {
         PARKING_LOT_CAPACITY = capacity;
-        NUMBER_OF_LOTS = numberoflots;
+        NUMBER_OF_LOTS = numberOfLots;
         PARKING_ROW_CAPACITY = PARKING_LOT_CAPACITY / NUMBER_OF_LOTS;
         IntStream.range(1, NUMBER_OF_LOTS + 1)
                 .forEach(i -> parkingLots.put(i, getNullTreeMap()));
@@ -44,47 +44,51 @@ public class ParkingLotSystem {
         return parkingSpots;
     }
 
-    public boolean parkVehicle(ParkedVehicle parkedVehicle) {
-        if (isVehicleParked(parkedVehicle)) throw new ParkingLotException("Vehicle already parked"
+    public boolean parkVehicle(ParkedVehicle vehicle) {
+        if (isVehicleParked(vehicle)) throw new ParkingLotException("Vehicle already parked"
                 , ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED);
         if (isParkingSlotEmpty()) {
-            return parkedVehicle.driver.getVehicleParked(parkedVehicle, this);
+            return vehicle.driverType.getVehicleParked(vehicle, this);
         }
         throw new ParkingLotException("Parking lot is full", ParkingLotException.ExceptionType.LOT_FULL);
     }
 
-    public boolean getSpotForNormalDriver(ParkedVehicle parkedVehicle) {
-        if (parkedVehicle.lotNo == 0 || parkedVehicle.spotNo == 0) {
+    public boolean getSpotForNormalDriver(ParkedVehicle vehicle) {
+        if (vehicle.lotNo == 0 || vehicle.spotNo == 0) {
             int parkingLot = this.getParkingLot();
             int spotNumber = this.getEmptySpot(parkingLot);
-            parkedVehicle.lotNo = parkingLot;
-            parkedVehicle.spotNo = spotNumber;
-            parkedVehicle.setParkedTime(LocalDateTime.now());
+            vehicle.lotNo = parkingLot;
+            vehicle.spotNo = spotNumber;
+            vehicle.setParkedTime(LocalDateTime.now());
         }
-        parkedVehicle.attendantName = parkingAttendant;
-        parkingLots.get(parkedVehicle.lotNo).put(parkedVehicle.spotNo, parkedVehicle);
+        vehicle.attendantName = parkingAttendant;
+        parkingLots.get(vehicle.lotNo).put(vehicle.spotNo, vehicle);
         isParkingSlotEmpty();
         return true;
     }
 
-    public boolean getSpotForHandicapDriver(ParkedVehicle parkedVehicle) {
-        parkedVehicle.lotNo = this.getParkingLot();
-        Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(parkedVehicle.lotNo)
+    public boolean getSpotForHandicapDriver(ParkedVehicle vehicle) {
+        System.out.println();
+        vehicle.lotNo = this.getParkingLot();
+        Map.Entry<Integer, ParkedVehicle> spotForHandicap = parkingLots.get(vehicle.lotNo)
                 .entrySet()
                 .stream()
-                .filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driver != Driver.HANDICAP_DRIVER)
+                .filter(parkingSpot -> parkingSpot.getValue() == null || parkingSpot.getValue().driverType != DriverType.HANDICAP_DRIVER)
                 .findFirst().get();
 
-        ParkedVehicle parkedVehicle1 = spotForHandicap.getValue();
-        parkedVehicle.spotNo = spotForHandicap.getKey();
-        parkedVehicle.parkedTime = LocalDateTime.now();
-        parkingLots.get(parkedVehicle.lotNo).put(spotForHandicap.getKey(), parkedVehicle);
-        if (parkedVehicle1 != null)
-            this.parkVehicle(parkedVehicle1);
+        ParkedVehicle parkedVehicle = spotForHandicap.getValue();
+        vehicle.spotNo = spotForHandicap.getKey();
+        vehicle.parkedTime = LocalDateTime.now();
+        parkingLots.get(vehicle.lotNo).put(spotForHandicap.getKey(), vehicle);
+        if (parkedVehicle != null) {
+            parkedVehicle.spotNo = 0;
+            parkedVehicle.lotNo = 0;
+            this.parkVehicle(parkedVehicle);
+        }
         return true;
     }
 
-    public boolean getSpotForLargeVehicle(ParkedVehicle parkedVehicle) {
+    public boolean getSpotForLargeVehicle(ParkedVehicle vehicle) {
         int parkingLot = this.getParkingLot();
         int spotNumber = parkingLots.get(parkingLot)
                 .entrySet()
@@ -94,11 +98,11 @@ public class ParkingLotSystem {
                 .findFirst()
                 .get()
                 .getKey();
-        parkedVehicle.lotNo = parkingLot;
+        vehicle.lotNo = parkingLot;
         if (spotNumber != PARKING_LOT_CAPACITY)
             spotNumber += 1;
-        parkedVehicle.spotNo = spotNumber;
-        this.getSpotForNormalDriver(parkedVehicle);
+        vehicle.spotNo = spotNumber;
+        this.getSpotForNormalDriver(vehicle);
         return true;
     }
 
@@ -109,8 +113,8 @@ public class ParkingLotSystem {
         return true;
     }
 
-    private int getEmptySpot(int parkingLot) {
-        return parkingLots.get(parkingLot)
+    private int getEmptySpot(int parkingLotNumber) {
+        return parkingLots.get(parkingLotNumber)
                 .entrySet().stream()
                 .filter(spotNumber -> spotNumber.getValue() == null)
                 .findFirst().get().getKey();
@@ -168,19 +172,24 @@ public class ParkingLotSystem {
     public List<ParkedVehicle> getAllParkedVehicle(int... lotNumbers) {
         List<ParkedVehicle> allParkedVehicle = new ArrayList<>();
         parkingLots.entrySet()
-                .stream().filter(parkingLot -> {
-            if (lotNumbers.length == 0) {
-                return true;
-            } else {
-                if (parkingLot.getKey() % lotNumbers[0] == 0)
-                    return true;
-            }
-            return false;
-        })
+                .stream().filter(parkingLot ->  getFilterByLotNumber(parkingLot, lotNumbers))
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
-                        .forEach(sortByDetails -> allParkedVehicle.add(sortByDetails.getValue())));
+                        .forEach(sortByDetails -> {
+                            System.out.println(sortByDetails.getValue());
+                            allParkedVehicle.add(sortByDetails.getValue());
+                        }));
         return checkParkedVehicleList(allParkedVehicle);
+    }
+
+    private boolean getFilterByLotNumber(Map.Entry<Integer, TreeMap<Integer, ParkedVehicle>> parkingLot, int[] lotNumbers) {
+        if (lotNumbers.length == 0) {
+            return true;
+        } else {
+            if (parkingLot.getKey() % lotNumbers[0] == 0)
+                return true;
+        }
+        return false;
     }
 
     public List<ParkedVehicle> getCarByDetails(VehicleDetails... vehicleDetails) {
@@ -196,7 +205,7 @@ public class ParkingLotSystem {
         List<ParkedVehicle> sortedVehicleByDetails = new ArrayList<>();
         List<ParkedVehicle> allParkedVehicle = getAllParkedVehicle(rowNo[0]);
         allParkedVehicle.stream()
-                .filter(parkingSlot -> parkingSlot.driver.toString().contains("HANDICAP_DRIVER")).
+                .filter(parkingSlot -> parkingSlot.driverType.toString().contains("HANDICAP_DRIVER")).
                 forEach(sortByDetails -> sortedVehicleByDetails.add(sortByDetails));
         return sortedVehicleByDetails;
     }
@@ -218,7 +227,7 @@ public class ParkingLotSystem {
     }
 
     private List<ParkedVehicle> checkParkedVehicleList(List<ParkedVehicle> parkedVehicleList) {
-        if (parkedVehicleList.size() > 0)
+        if (!parkedVehicleList.isEmpty())
             return parkedVehicleList;
         throw new ParkingLotException("No such vehicle in lot", ParkingLotException.ExceptionType.NO_SUCH_VEHICLE);
     }
