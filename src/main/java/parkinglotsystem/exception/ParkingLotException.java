@@ -1,6 +1,6 @@
 package parkinglotsystem.exception;
 
-public class ParkingLotException extends RuntimeException{
+public class ParkingLotException extends RuntimeException {
 
     public ExceptionType type;
 

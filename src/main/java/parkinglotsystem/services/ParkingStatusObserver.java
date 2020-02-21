@@ -4,7 +4,7 @@ package parkinglotsystem.services;
 import java.util.ArrayList;
 
 public class ParkingStatusObserver {
-    private ArrayList<ParkingLotObserver> observers = new ArrayList<ParkingLotObserver>();
+    private ArrayList<ParkingLotObserver> observers = new ArrayList<>();
 
     public void registerObserver(ParkingLotObserver observer) {
         observers.add(observer);

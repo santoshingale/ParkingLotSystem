@@ -1,7 +1,7 @@
 package parkinglotsystem;
 
-import parkinglotsystem.enumerate.VehicleDetails;
 import parkinglotsystem.enumerate.DriverType;
+import parkinglotsystem.enumerate.VehicleDetails;
 import parkinglotsystem.exception.ParkingLotException;
 import parkinglotsystem.services.AirportSecurity;
 import parkinglotsystem.services.ParkedVehicle;
@@ -17,7 +17,7 @@ public class ParkingLotSystem {
     private final int PARKING_LOT_CAPACITY;
     private final int NUMBER_OF_LOTS;
     private final int PARKING_ROW_CAPACITY;
-    private final String parkingAttendant = "xyz";
+    private final static String parkingAttendant = "xyz";
 
 
     ParkingLotOwner parkingLotOwner = new ParkingLotOwner();
@@ -172,7 +172,7 @@ public class ParkingLotSystem {
     public List<ParkedVehicle> getAllParkedVehicle(int... lotNumbers) {
         List<ParkedVehicle> allParkedVehicle = new ArrayList<>();
         parkingLots.entrySet()
-                .stream().filter(parkingLot ->  getFilterByLotNumber(parkingLot, lotNumbers))
+                .stream().filter(parkingLot -> getFilterByLotNumber(parkingLot, lotNumbers))
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
                         .forEach(sortByDetails -> {
