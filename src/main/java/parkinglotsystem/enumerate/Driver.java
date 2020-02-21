@@ -1,18 +1,14 @@
 package parkinglotsystem.enumerate;
 
+import parkinglotsystem.services.DriverFactory;
 import parkinglotsystem.services.ParkedVehicle;
 import parkinglotsystem.ParkingLotSystem;
 
 public enum Driver {
-    SMALL_VEHICLE_DRIVER {
+    NORMAL_DRIVER {
         @Override
         public boolean getVehicleParked(ParkedVehicle vehicle, ParkingLotSystem parkingLotSystem) {
-            return parkingLotSystem.getSpotForNormalDriver(vehicle);
-        }
-    }, LARGE_VEHICLE_DRIVER {
-        @Override
-        public boolean getVehicleParked(ParkedVehicle vehicle, ParkingLotSystem parkingLotSystem) {
-            return parkingLotSystem.getSpotForLargeVehicle(vehicle);
+            return DriverFactory.getVehicleParkBySize(vehicle,parkingLotSystem);
         }
     }, HANDICAP_DRIVER {
         @Override
