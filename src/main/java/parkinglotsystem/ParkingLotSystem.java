@@ -174,7 +174,7 @@ public class ParkingLotSystem {
                 .forEach(integerTreeMapEntry -> integerTreeMapEntry.getValue().entrySet().stream()
                         .filter(slotNumber -> slotNumber.getValue() != null)
                         .forEach(sortByDetails ->
-                            allParkedVehicle.add(sortByDetails.getValue())));
+                                allParkedVehicle.add(sortByDetails.getValue())));
         return checkParkedVehicleList(allParkedVehicle);
     }
 

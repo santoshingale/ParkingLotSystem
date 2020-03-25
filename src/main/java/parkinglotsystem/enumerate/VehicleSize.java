@@ -1,5 +1,5 @@
 package parkinglotsystem.enumerate;
 
-public enum  VehicleSize {
-    SMALL,LARGE;
+public enum VehicleSize {
+    SMALL, LARGE;
 }

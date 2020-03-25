@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bed055b4-875f-4de7-bf61-ced3be919a0f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/ParkingLotSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/ParkingLotSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/DriverType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/DriverType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/VehicleDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/VehicleDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/VehicleSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parkinglotsystem/enumerate/VehicleSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,17 +74,17 @@
       <recent name="parking_lot_system" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="parkinglotsystem.model" />
       <recent name="parkinglotsystem.services" />
       <recent name="parkinglotsystem" />
       <recent name="parkinglotsystem.observers" />
       <recent name="parkinglotsystem.exception" />
-      <recent name="parkinglotsystem.enumentity" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="parking_lot_system" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ParkingLotSystemTest">
+  <component name="RunManager" selected="Gradle.ParkingLotSystemTest.givenVehicle_whenDriverUnparkingWrongVehicle_shouldReturnException">
     <configuration name="ParkingLotSystemTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -99,12 +105,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ParkingLotSystemTest.givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ParkingLotSystemTest.givenVehicle_whenDriverUnparkingWrongVehicle_shouldReturnException" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;parkinglotsystem.ParkingLotSystemTest.givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles&quot;" />
+        <option name="scriptParameters" value="--tests &quot;parkinglotsystem.ParkingLotSystemTest.givenVehicle_whenDriverUnparkingWrongVehicle_shouldReturnException&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -181,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicle_whenDriverUnparkingWrongVehicle_shouldReturnException" />
         <item itemvalue="Gradle.ParkingLotSystemTest" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenBandDLotHasHandicapVehicle_shouldReturnIt" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenThatAreParked_shouldReturnIt" />
         <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicles_whenItIsParkedWithin30Min_shouldReturnThatVehicle" />
-        <item itemvalue="Gradle.ParkingLotSystemTest.givenVehicle_whenItIsBlueToyota_shouldReturnThatVehicles" />
       </list>
     </recent_temporary>
   </component>
@@ -228,18 +234,18 @@
     </state>
     <state x="771" y="112" width="548" height="592" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1582256510290" />
     <state x="526" y="84" width="558" height="633" key="#com.intellij.ide.util.MemberChooser/70.27.1296.741@70.27.1296.741" timestamp="1581397873664" />
-    <state x="449" y="180" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1582118239745">
+    <state x="449" y="180" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1582264423614">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="449" y="180" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog/67.27.1299.741@67.27.1299.741" timestamp="1582118239745" />
+    <state x="449" y="180" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog/67.27.1299.741@67.27.1299.741" timestamp="1582264423614" />
     <state x="432" y="134" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1581858710708">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="432" y="134" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1440.900@0.0.1440.900" timestamp="1581858710708" />
-    <state x="469" y="256" width="623" height="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582118244091">
+    <state x="469" y="256" width="623" height="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582264425003">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="469" y="256" width="623" height="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1299.741@67.27.1299.741" timestamp="1582118244091" />
+    <state x="469" y="256" width="623" height="292" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1299.741@67.27.1299.741" timestamp="1582264425003" />
     <state x="489" y="260" width="537" height="322" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1582018058101">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -256,53 +262,53 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1582114018772" />
-    <state width="1253" height="361" key="GridCell.Tab.0.bottom" timestamp="1582261722570">
+    <state width="1253" height="93" key="GridCell.Tab.0.bottom" timestamp="1585121499456">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1581859207720" />
     <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.822@0.23.1440.822" timestamp="1581843705015" />
-    <state width="1253" height="361" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582261722570" />
+    <state width="1253" height="93" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1585121499456" />
     <state width="1250" height="40" key="GridCell.Tab.0.bottom/70.27.1296.741@70.27.1296.741" timestamp="1581422656218" />
-    <state width="1253" height="361" key="GridCell.Tab.0.center" timestamp="1582261722569">
+    <state width="1253" height="93" key="GridCell.Tab.0.center" timestamp="1585121499456">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1581859207718" />
     <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.822@0.23.1440.822" timestamp="1581843705011" />
-    <state width="1253" height="361" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1582261722569" />
+    <state width="1253" height="93" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1585121499456" />
     <state width="1250" height="40" key="GridCell.Tab.0.center/70.27.1296.741@70.27.1296.741" timestamp="1581422656217" />
-    <state width="1253" height="361" key="GridCell.Tab.0.left" timestamp="1582261722569">
+    <state width="1253" height="93" key="GridCell.Tab.0.left" timestamp="1585121499455">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1581859207717" />
     <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.822@0.23.1440.822" timestamp="1581843705010" />
-    <state width="1253" height="361" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1582261722569" />
+    <state width="1253" height="93" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1585121499455" />
     <state width="1250" height="40" key="GridCell.Tab.0.left/70.27.1296.741@70.27.1296.741" timestamp="1581422656216" />
-    <state width="1253" height="361" key="GridCell.Tab.0.right" timestamp="1582261722570">
+    <state width="1253" height="93" key="GridCell.Tab.0.right" timestamp="1585121499456">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1581859207719" />
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.822@0.23.1440.822" timestamp="1581843705013" />
-    <state width="1253" height="361" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1582261722570" />
+    <state width="1253" height="93" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1585121499456" />
     <state width="1250" height="40" key="GridCell.Tab.0.right/70.27.1296.741@70.27.1296.741" timestamp="1581422656217" />
-    <state width="1253" height="198" key="GridCell.Tab.1.bottom" timestamp="1582258613320">
+    <state width="1253" height="198" key="GridCell.Tab.1.bottom" timestamp="1582352326909">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="198" key="GridCell.Tab.1.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582258613320" />
+    <state width="1253" height="198" key="GridCell.Tab.1.bottom/67.27.1299.741@67.27.1299.741" timestamp="1582352326909" />
     <state width="1250" height="40" key="GridCell.Tab.1.bottom/70.27.1296.741@70.27.1296.741" timestamp="1581422656221" />
-    <state width="1253" height="198" key="GridCell.Tab.1.center" timestamp="1582258613319">
+    <state width="1253" height="198" key="GridCell.Tab.1.center" timestamp="1582352326909">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="198" key="GridCell.Tab.1.center/67.27.1299.741@67.27.1299.741" timestamp="1582258613319" />
+    <state width="1253" height="198" key="GridCell.Tab.1.center/67.27.1299.741@67.27.1299.741" timestamp="1582352326909" />
     <state width="1250" height="40" key="GridCell.Tab.1.center/70.27.1296.741@70.27.1296.741" timestamp="1581422656219" />
-    <state width="1253" height="198" key="GridCell.Tab.1.left" timestamp="1582258613319">
+    <state width="1253" height="198" key="GridCell.Tab.1.left" timestamp="1582352326908">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="198" key="GridCell.Tab.1.left/67.27.1299.741@67.27.1299.741" timestamp="1582258613319" />
+    <state width="1253" height="198" key="GridCell.Tab.1.left/67.27.1299.741@67.27.1299.741" timestamp="1582352326908" />
     <state width="1250" height="40" key="GridCell.Tab.1.left/70.27.1296.741@70.27.1296.741" timestamp="1581422656219" />
-    <state width="1253" height="198" key="GridCell.Tab.1.right" timestamp="1582258613320">
+    <state width="1253" height="198" key="GridCell.Tab.1.right" timestamp="1582352326909">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="198" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1582258613320" />
+    <state width="1253" height="198" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1582352326909" />
     <state width="1250" height="40" key="GridCell.Tab.1.right/70.27.1296.741@70.27.1296.741" timestamp="1581422656220" />
     <state x="205" y="31" key="SettingsEditor" timestamp="1582113546437">
       <screen x="67" y="27" width="1299" height="741" />
@@ -316,11 +322,11 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="488" y="182" width="446" height="440" key="chooseDestDirectoryDialog/67.27.1299.741@67.27.1299.741" timestamp="1582089709147" />
-    <state x="372" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1582255681385">
+    <state x="372" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1585121531608">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="338" y="242" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1581854720090" />
-    <state x="372" y="225" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1582255681385" />
+    <state x="372" y="225" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1585121531608" />
     <state x="374" y="225" key="com.intellij.ide.util.TipDialog/70.27.1296.741@70.27.1296.741" timestamp="1581424284869" />
     <state x="337" y="61" width="748" height="670" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1582089536203">
       <screen x="67" y="27" width="1299" height="741" />
@@ -356,12 +362,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java</url>
-          <line>223</line>
+          <line>221</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/parkinglotsystem/ParkingLotSystemTest.java</url>
-          <line>224</line>
+          <line>222</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

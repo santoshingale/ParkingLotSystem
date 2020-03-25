@@ -8,7 +8,7 @@ public enum DriverType {
     NORMAL_DRIVER {
         @Override
         public boolean getVehicleParked(ParkedVehicle vehicle, ParkingLotSystem parkingLotSystem) {
-            return DriverFactory.getVehicleParkBySize(vehicle,parkingLotSystem);
+            return DriverFactory.getVehicleParkBySize(vehicle, parkingLotSystem);
         }
     }, HANDICAP_DRIVER {
         @Override

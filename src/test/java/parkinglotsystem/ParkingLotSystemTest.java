@@ -31,14 +31,16 @@ public class ParkingLotSystemTest {
     }
 
     @Test
+    public void giveVehicle_WhenItIsNotParked_shouldReturnFalse() {
+        Assert.assertFalse(parkingLotSystem.isVehicleParked(parkedVehicle));
+    }
+
+    @Test
     public void givenVehicle_whenDriverUnparkingWrongVehicle_shouldReturnException() throws ParkingLotException {
-        parkingLotSystem.parkVehicle(parkedVehicle);
-        Assert.assertTrue(parkingLotSystem.isVehicleParked(parkedVehicle));
-        parkingLotSystem.unparkCar(parkedVehicle);
         try {
-            parkingLotSystem.isVehicleParked(parkedVehicle);
+            parkingLotSystem.unparkCar(parkedVehicle);
         } catch (ParkingLotException p) {
-            Assert.assertEquals("Car is not parked", p.getMessage());
+            Assert.assertEquals(ParkingLotException.ExceptionType.VEHICLE_NOT_PARKED, p.type);
         }
     }
 
@@ -194,7 +196,7 @@ public class ParkingLotSystemTest {
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.NORMAL_DRIVER, VehicleSize.SMALL));
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.NORMAL_DRIVER, VehicleSize.SMALL));
         List<ParkedVehicle> vehicleList = parkingLotSystem.getVehicleByTime(30);
-        Assert.assertEquals(2,vehicleList.size());
+        Assert.assertEquals(2, vehicleList.size());
     }
 
     @Test
@@ -209,21 +211,21 @@ public class ParkingLotSystemTest {
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL));
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.NORMAL_DRIVER, VehicleSize.SMALL));
         List<ParkedVehicle> sortedVehicle = parkingLotSystem.getHandicapCarInLot(2);
-        Assert.assertEquals(3,sortedVehicle.size());
+        Assert.assertEquals(3, sortedVehicle.size());
     }
 
     @Test
     public void givenVehicles_whenThatAreParked_shouldReturnIt() {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem(8, 4);
-        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL,"blue"));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL, "blue"));
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.NORMAL_DRIVER, VehicleSize.SMALL));
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.NORMAL_DRIVER, VehicleSize.SMALL));
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.NORMAL_DRIVER, VehicleSize.SMALL));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL,"blue1"));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL,"blue2"));
-        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL,"blue3"));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL, "blue1"));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL, "blue2"));
+        parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.HANDICAP_DRIVER, VehicleSize.SMALL, "blue3"));
         parkingLotSystem.parkVehicle(new ParkedVehicle(DriverType.NORMAL_DRIVER, VehicleSize.SMALL));
         List<ParkedVehicle> sortedVehicle = parkingLotSystem.getAllParkedVehicle();
-        Assert.assertEquals(8,sortedVehicle.size());
+        Assert.assertEquals(8, sortedVehicle.size());
     }
 }
